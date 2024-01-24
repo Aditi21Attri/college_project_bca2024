@@ -1,0 +1,174 @@
+{% extends "layout.html" %}
+{% block head %}
+       <div class="brand_color">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+                        <h2>Welcome to admin dashboard <br>{{params.admin_name}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<div class="about">
+   <div class="container">
+      <div class="row">
+         <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12">
+            <div class="about_box">
+               <figure><img src="{{url_for('static',filename='images/adminphoto.jpg')}}"/></figure>
+            </div>
+         </div>
+          <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12">
+            <div class="about_box">
+               <h3>From here you can manage and handle your site data </h3>
+                <form method="post" novalidate>
+                <p class="searchText"><strong>Which data you want to access</strong></p>
+                <div class="row">
+
+			        <div class="col-sm-6">
+				        <select class="browser-default custom-select mb-4" id="select1" name="details_of">
+                            <option value="" disabled="" selected="">Data of:</option>
+                            <option value="hotelsdetails">Hotels</option>
+                             <option value="signindetails">Users</option>
+                            <option value="Mumbai">Cabs</option>
+                            <option value="Solan">Homestays and villas</option>
+                            <option value="Solan">Tour and travels</option>
+                         </select>
+                    </div>
+                </div>
+                    <button type="submit" id="sendbutton" class="btn btn-primary btn-lg">Search</button>  <a  href="/logout"><button type="submit" id="btn btn-primary btn-lg" name="Log_ot_button" class="btn btn-outline-danger btn-lg" value="Log_ot">Log Out</button></a><br><br>
+
+                </form>
+
+                {% if details_given=='True' %}
+                {% if details_type=='hotels' %}
+
+               <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
+                        <tr>
+                          <th>Hotel</th>
+                          <th>Type of rooms</th>
+                          <th>Cost per night/-</th>
+                          <th>Location</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+
+                        </tr>
+                      </thead>
+                   {% for details in details_wanted %}
+
+                      <tbody>
+                        <tr>
+                          <td>
+
+
+                    <div class="d-flex align-items-center">
+                      <img
+                          src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                          alt=""
+                          style="width: 45px; height: 45px"
+                          class="rounded-circle"
+                          />
+                      <div class="ms-3">
+                        <p class="fw-bold mb-1">{{details.hotelname}}</p>
+                        <p class="text-muted mb-0">{{details.area}}</p>
+                      </div>
+                    </div>
+                          </td>
+                            <td>
+                                <p class="fw-bold mb-1">{{details.type}}</p>
+                            </td>
+                            <td>
+                                <p class="fw-bold mb-1">{{details.price}}</p>
+                            </td>
+                            <td>
+                                <p class="fw-bold mb-1">{{details.area}}</p>
+                            </td>
+                            <td>
+                                <a href="/uploadhotels/{{details.srno}}"><button type="button" id="editbutton1" class="btn btn-outline-dark btn-lg">Edit</button></a>
+                            </td>
+                            <td>
+                                <a href="/delete/{{details.srno}}"><button type="button" id="deletebutton1" class="btn btn-outline-danger  btn-lg">Delete</button></a>
+                            </td>
+                        </tr>
+
+
+
+
+                      {% endfor %}
+                        <a href="uploadhotels/0"><button type="button" id="Upload new" class="btn btn-secondary  btn-lg">Upload new</button></a>
+                        {% endif %}
+                        {% if details_type=='users' %}
+
+
+                     <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
+                        <tr>
+                          <th>User Name</th>
+                          <th>User Login/Email Id:</th>
+                          <th>User SignIn Date</th>
+                            <th>Delete</th>
+
+                        </tr>
+                      </thead>
+                   {% for details in details_wanted %}
+
+                      <tbody>
+                        <tr>
+                          <td>
+
+
+                    <div class="d-flex align-items-center">
+                      <img
+                          src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                          alt=""
+                          style="width: 45px; height: 45px"
+                          class="rounded-circle"
+                          />
+                      <div class="ms-3">
+                        <p class="fw-bold mb-1">{{details.name}}</p>
+
+                      </div>
+                    </div>
+                          </td>
+                            <td>
+                                <p class="fw-bold mb-1">{{details.email}}</p>
+                            </td>
+                            <td>
+                                <p class="fw-bold mb-1">{{details.date}}</p>
+                            </td>
+
+                            <td>
+                                <button type="button" id="deletebutton2" class="btn btn-outline-danger  btn-lg">Delete</button>
+                            </td>
+                        </tr>
+
+
+
+
+                          {% endfor %}
+                        {% endif %}
+
+                          {% endif %}
+
+
+
+                      </tbody>
+                     </table>
+                      </tbody></table>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
