@@ -41,6 +41,16 @@ class hotelsdetails(db.Model):
     type_of = db.Column(db.String(20), nullable=True)
     image_src=db.Column(db.String(20), nullable=True)
 
+class homestayvillas(db.Model):
+    srno = db.Column(db.Integer, primary_key=True)
+    homestayname = db.Column(db.String(20), unique=False, nullable=False)
+    area = db.Column(db.String(25), nullable=False)
+    image_src = db.Column(db.String(20), nullable=False)
+    price = db.Column(db.String(20), nullable=True)
+    description = db.Column(db.String(50), nullable=True)
+    roomsoffered = db.Column(db.String(20), nullable=True)
+    helpers = db.Column(db.String(50), nullable=True)
+
 
 @app.route("/register.html", methods={'GET', 'POST'})
 def register():
@@ -55,8 +65,8 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/homestays.html", methods={'GET', 'POST'})
-def homestays():
+@app.route("/hotel", methods={'GET', 'POST'})
+def hotel():
     if request.method == "POST":
         destination = request.form.get('destination')
         no_rooms = request.form.get('no_of_rooms')
@@ -69,8 +79,34 @@ def homestays():
     print(hotels)
 
     return render_template("hotel.html", hotels=hotels)
+@app.route("/homestay", methods={'GET', 'POST'})
+def homestayVillas():
+    if request.method == "POST":
+        destination = request.form.get('destination')
+        helper_wanted = request.form.get('helper_wanted')
+        checkin=request.form.get('checkin')
+        checkout=request.form.get('checkout')
+        range = request.form.get('range')
+        homestays = homestayvillas.query.filter_by(area=destination)
+    else:
+        homestays = homestayvillas.query.filter()
+    print(homestays)
 
+    return render_template("homestays.html", homestays=homestays)
 
+@app.route("/cabbooking", methods={'GET', 'POST'})
+def cabBooking():
+    if request.method == "POST":
+        destination = request.form.get('destination')
+        no_rooms = request.form.get('no_of_rooms')
+        room_type = request.form.get('room_type')
+        range = request.form.get('range')
+        hotels = hotelsdetails.query.filter_by(type=room_type)
+    else:
+        hotels = hotelsdetails.query.filter()
+    print(hotels)
+
+    return render_template("cabbook.html", hotels=hotels)
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -89,7 +125,8 @@ def blog():
 @app.route("/services")
 def product():
     hotels = hotelsdetails.query.filter()[0:3]
-    return render_template("services.html",hotels=hotels)
+    homestays=homestayvillas.query.filter()[0:3]
+    return render_template("services.html",hotels=hotels,homestays=homestays)
 
 
 @app.route("/contact")
@@ -115,6 +152,11 @@ def login():
                 details_given = 'True'
                 return render_template("adminlogin.html", details_wanted=hotels, params=params,
                                        details_given=details_given,details_type="hotels")
+            elif details_of == "homestayvillas":
+                homestays = homestayvillas.query.filter()
+                details_given = 'True'
+                return render_template("adminlogin.html", details_wanted=homestays, params=params,
+                                       details_given=details_given,details_type="homestays")
             elif details_of == "signindetails":
                 users = signindetails.query.filter()
                 details_given = 'True'

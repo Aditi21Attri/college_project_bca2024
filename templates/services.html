@@ -18,26 +18,29 @@
          <div class="container">
             <div class="row">
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="product-box">
-                     <a href="homestays.html"><i><img src="icon/p1.png"/></i>
-                     <h3>HomeStay</h3>
-                         <h4><i class="fa fa-home fa-3x"></i><i class="fa fa-home fa-2x"></i></h4></a>
+                  <a href="hotel"><div class="product-box">
+                     <i><img src="icon/p1.png"/></i>
+                     <h3>Hotel</h3>
+                         <i class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-4x"></i><i class="fa fa-building fa-2x"></i>
+
                   </div>
+                </a>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="product-box">
+                  <a href="homestay"><div class="product-box">
                      <i><img src="icon/p2.png"/></i>
-                     <h3>Hotels</h3>
-                     <i class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-4x"></i><i class="fa fa-building fa-2x"></i>
-                  </div>
+                     <h3>HomeStays & Villas</h3>
+                      <h4><i class="fa fa-home fa-3x"></i><i class="fa fa-home fa-2x"></i></h4>
+
+                  </div></a>
                </div>
 
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="product-box">
+                  <a href="cabbooking"> <div class="product-box">
                      <i><img src="icon/p4.png"/></i>
                      <h3>Cab</h3>
                      <i class="fa fa-car fa-4x"></i>
-                  </div>
+                  </div></a>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="product-box">
@@ -51,32 +54,43 @@
          </div>
       </div>
 <hr>
+
+
+
 <div class="product">
     <div class="Lastestnews blog">
          <div class="container">
-                <div class="row">
-                <div class="col-md-12">
-                    <p class=" h2 font-weight-bold" id="title_hotel">Hotels:</p>
-                </div>
-                </div>
             <div class="row">
-                      {% for hotel in hotels %}
+                {% for hotel in hotels %}
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
-
                     <div class="news-box">
                         <figure><img src="" alt="img" /></figure>
                         <h3>{{hotel.hotelname}}</h3>
                         <span> {{hotel.area}}</span><span>{{hotel.type}}</span>
                         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, </p>
+                        <button type="button" class=" btn-primary">Book Now</button>
                     </div>
 				</div>
-
-
-	 {% endfor %}
+                {% endfor %}
             </div>
-             <a href="homestays.html"> <button type="button" class="btn btn-primary btn-lg float-right">View All &rarr;</button></a><br><br>
-         </div></div>
+                <div class="row">
+                    {% for homestay in homestays %}
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
+                        <div class="news-box">
+                            <figure><img src="" alt="img" /></figure>
+                             <h3>{{homestay.homestayname}}</h3>
+                            <span> {{homestay.area}}</span><span>{{homestay.price}}</span>
+                            <p>{{homestay.description}}</p>
+                        </div>
+				    </div>
+                {% endfor %}
+                     </div>
+            </div>
+         </div>
+    </div>
 </div>
+
+
 
 
 {% endblock %}
