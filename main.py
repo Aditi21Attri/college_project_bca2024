@@ -126,8 +126,8 @@ def blog():
 def product():
     hotels = hotelsdetails.query.filter()[0:3]
     homestays=homestayvillas.query.filter()[0:3]
+    print(hotels)
     return render_template("services.html",hotels=hotels,homestays=homestays)
-
 
 @app.route("/contact")
 def contact():

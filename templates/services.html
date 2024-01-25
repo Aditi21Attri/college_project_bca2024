@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 {% block head %}
-
        <div class="brand_color">
         <div class="container">
             <div class="row">
@@ -55,42 +54,35 @@
       </div>
 <hr>
 
-
-
-<div class="product">
-    <div class="Lastestnews blog">
-         <div class="container">
+	<div class="Lastestnews blog">
+        <div class="container">
             <div class="row">
                 {% for hotel in hotels %}
+                {% set fname='uploadedfiles/'+ hotel.image_src %}
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
+                        <div class="news-box">
+                            <figure><img src="{{url_for('static',filename=fname)}}" /></figure>
+                            <h3>{{hotel.hotelname}}</h3>
+                            <span> {{hotel.area}}</span><span>{{hotel.type}}</span>
+                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+							<button type="button" class="btn-lg btn-outline-primary float-right">Book Now</button></p><br>
+					    </div>
+				    </div>
+	            {% endfor %}
+	        </div>
+            <div class="row">
+                {% for homestay in homestays %}
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
                     <div class="news-box">
                         <figure><img src="" alt="img" /></figure>
-                        <h3>{{hotel.hotelname}}</h3>
-                        <span> {{hotel.area}}</span><span>{{hotel.type}}</span>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, </p>
-                        <button type="button" class=" btn-primary">Book Now</button>
+                        <h3>{{homestay.homestayname}}</h3>
+                        <span> {{homestay.area}}</span><span>{{homestay.price}}</span>
+                        <p>{{homestay.description}}</p>
                     </div>
-				</div>
+                </div>
                 {% endfor %}
             </div>
-                <div class="row">
-                    {% for homestay in homestays %}
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
-                        <div class="news-box">
-                            <figure><img src="" alt="img" /></figure>
-                             <h3>{{homestay.homestayname}}</h3>
-                            <span> {{homestay.area}}</span><span>{{homestay.price}}</span>
-                            <p>{{homestay.description}}</p>
-                        </div>
-				    </div>
-                {% endfor %}
-                     </div>
-            </div>
-         </div>
-    </div>
-</div>
-
-
-
 
 {% endblock %}
+		</div></div>
+

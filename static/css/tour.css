@@ -1,9 +1,9 @@
 .card{
   margin:auto;
   border:solid 1px #dbdad7;
-  width:60%;
+  width:90%;
   padding-left:10px!important;
-  padding-bottom:10px!important;
+  padding-bottom:1px!important;
   padding-right:10px!important;
   padding-top: 0px!important;
 
@@ -11,10 +11,10 @@
 
 .card-title{
   margin:auto;
-  padding:15px;
+  padding:10px;
   background-color: #2f7fad;
   color: white;
-  width:80%;
+  width:60%;
 }
 
 div.card-body{
@@ -25,7 +25,7 @@ div.card-body{
 }
 
 .btn2{
-  margin-left:10%;
+  margin-left:20%;
 }
 input {
   outline: 0!important;
@@ -85,20 +85,20 @@ select:focus{
   .card{
     margin:auto;
     border:solid 1px #dbdad7;
-    width:90%;
+    width:60%;
     padding-left:10px!important;
-    padding-bottom:10px!important;
+    padding-bottom:1px!important;
     padding-right:10px!important;
     padding-top: 0px!important;
 
   }
 
   .fa{
-    border-radius: 25px;
+    border-radius: 1px;
     width: 15%;
     margin-left: 5%;
     border:solid 2px #dbdad7;
-    margin-top:5%;
+    margin-top:1%;
     text-align: center;
   }
 }

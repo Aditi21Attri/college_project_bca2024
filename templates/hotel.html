@@ -94,26 +94,26 @@
 </form>
 
 		</div>
+
 	<div class="Lastestnews blog">
         <div class="container">
 
 	<div class="row">
      {% for hotel in hotels %}
-
+		{% set fname='uplodedfiles/'+ hotel.image_src %}
 
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
                     <div class="news-box">
-                        <figure><img src="" alt="img" /></figure>
+                        <figure><img src="{{url_for('static',filename=fname)}}" alt="img" /></figure>
                         <h3>{{hotel.hotelname}}</h3>
                         <span> {{hotel.area}}</span><span>{{hotel.type}}</span>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, </p>
-                    </div>
+                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+							<button type="button" class="btn-lg btn-outline-primary float-right">Book Now</button></p><br>
+					</div>
 				</div>
 
 	 {% endfor %}
 	</div>
-
-
 
 {% endblock %}
 		</div></div>
