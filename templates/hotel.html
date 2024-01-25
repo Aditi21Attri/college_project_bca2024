@@ -59,12 +59,12 @@
 
 			<div class="col-sm-6">
 				<p>Check In date</p>
-				<input placeholder="&#xf073; Departing" type="date" id="date-picker-example" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome" >
+				<input placeholder="&#xf073; Departing" type="date"  class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome" >
 			</div>
 
 				<div class="col-sm-6">
 					<p>Check Out Date</p>
-					<input placeholder="&#xf073; Arriving" type="date" id="date-picker-example" class="form-control datepicker" style="font-family:Arial, FontAwesome" >
+					<input placeholder="&#xf073; Arriving" type="date"  class="form-control datepicker" style="font-family:Arial, FontAwesome" >
 			</div>
 
 				</div>
@@ -107,8 +107,8 @@
                         <figure><img src="{{url_for('static',filename=fname)}}" alt="img" /></figure>
                         <h3>{{hotel.hotelname}}</h3>
                         <span> {{hotel.area}}</span><span>{{hotel.type}}</span>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-							<button type="button" class="btn-lg btn-outline-primary float-right">Book Now</button></p><br>
+                        <p>{{hotel.description}}
+							<button type="button" value="{{hotel.hotelname}}" name="bookbutton" class="btn-lg btn-outline-primary float-right">Book Now</button></p><br>
 					</div>
 				</div>
 

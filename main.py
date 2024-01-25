@@ -40,6 +40,7 @@ class hotelsdetails(db.Model):
     hotel_slugs = db.Column(db.String(20), nullable=True)
     type_of = db.Column(db.String(20), nullable=True)
     image_src=db.Column(db.String(20), nullable=True)
+    description=db.Column(db.String(20), nullable=False)
 
 class homestayvillas(db.Model):
     srno = db.Column(db.Integer, primary_key=True)
@@ -73,6 +74,7 @@ def hotel():
         room_type = request.form.get('room_type')
         range = request.form.get('range')
         hotels = hotelsdetails.query.filter_by(type=room_type)
+
     else:
 
         hotels = hotelsdetails.query.filter()

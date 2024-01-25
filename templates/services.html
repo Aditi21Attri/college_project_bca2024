@@ -18,7 +18,7 @@
             <div class="row">
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <a href="hotel"><div class="product-box">
-                     <i><img src="icon/p1.png"/></i>
+                     <i><img src="{{url_for('static',filename='uplodedfiles/mainhotel.jpg')}}"/></i>
                      <h3>Hotel</h3>
                          <i class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-4x"></i><i class="fa fa-building fa-2x"></i>
 
@@ -27,7 +27,7 @@
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <a href="homestay"><div class="product-box">
-                     <i><img src="icon/p2.png"/></i>
+                     <i><img src="{{url_for('static',filename='uplodedfiles/homestaymain.jpg')}}"/></i>
                      <h3>HomeStays & Villas</h3>
                       <h4><i class="fa fa-home fa-3x"></i><i class="fa fa-home fa-2x"></i></h4>
 
@@ -36,14 +36,14 @@
 
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <a href="cabbooking"> <div class="product-box">
-                     <i><img src="icon/p4.png"/></i>
+                     <i><img src="{{url_for('static',filename='uplodedfiles/cab.jpg')}}"/></i>
                      <h3>Cab</h3>
                      <i class="fa fa-car fa-4x"></i>
                   </div></a>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="product-box">
-                     <i><img src="icon/p5.png"/></i>
+                     <i><img src="{{url_for('static',filename='uplodedfiles/tourindia.jpg')}}"/></i>
                      <h3>Tour packages</h3>
                      <i class="fa fa-road fa-4x"></i>
                   </div>
@@ -58,13 +58,13 @@
         <div class="container">
             <div class="row">
                 {% for hotel in hotels %}
-                {% set fname='uploadedfiles/'+ hotel.image_src %}
+                {% set fname='uplodedfiles/'+ hotel.image_src %}
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
                         <div class="news-box">
                             <figure><img src="{{url_for('static',filename=fname)}}" /></figure>
                             <h3>{{hotel.hotelname}}</h3>
                             <span> {{hotel.area}}</span><span>{{hotel.type}}</span>
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+                            <p>{{hotel.description}}
 							<button type="button" class="btn-lg btn-outline-primary float-right">Book Now</button></p><br>
 					    </div>
 				    </div>
