@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block head %}
+<head>
+	<link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
+</head>
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+			<br><br>
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						{% set fname='uplodedfiles/'+ hotel.image_src %}
+						<img src="{{url_for('static',filename=fname)}}" alt="img" /><br>
+					<span class="text-primary font-weight-bold text-lg-center" style="font-size: 20px">HOTEL :{{hotel.hotelname}}</span><br>
+					<span class="text-darks font-weight-bold text-danger"> {{hotel.area}}</span><br>
+					<span class="text-darks font-weight-bold text-danger"> {{hotel.price}}/-per day</span><br>
+					<span class="font-weight-bold text-danger">{{hotel.type}}</span><br>
+					<p class="font-weight-normal">{{hotel.description}}</p>
+					<br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-6"><br><br>
+			<form method="post" novalidate>
+				<div class="card shadow mb-1 bg-white rounded">
+					<div class="card-body">
+						<p class="card-title text-center shadow mb-5 rounded">HOTEL BOOKING FORM</p><hr>
+						<p class="searchText"><strong>Book your hotel </strong></p>
+		<!--Second Row-->
+						<div class="row">
+							<div class="col-12">
+								<select class="browser-default custom-select mb-4" id="select2" name="helper_wanted">
+									<option value="" disabled="" selected="">No of Rooms:</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<p>Check In date</p>
+								<input placeholder="&#xf073; Departing" name="checkin" type="date" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome" >
+							</div>
+							<div class="col-sm-12">
+								<p>Check Out Date</p>
+								<input placeholder="&#xf073; Arriving" name="checkout" type="date" class="form-control datepicker" style="font-family:Arial, FontAwesome" >
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<button type="submit" id="sendbutton" class="btn btn-primary btn-lg float-right mt-5">BOOK NOW</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

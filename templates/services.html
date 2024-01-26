@@ -64,8 +64,8 @@
                             <figure><img src="{{url_for('static',filename=fname)}}" /></figure>
                             <h3>{{hotel.hotelname}}</h3>
                             <span> {{hotel.area}}</span><span>{{hotel.type}}</span>
-                            <p>{{hotel.description}}
-							<button type="button" class="btn-lg btn-outline-primary float-right">Book Now</button></p><br>
+                            <p>{{hotel.description[0:100]}}
+                                <a href="/hotelbooking/{{hotel.srno}}"><button type="button" class="btn-lg btn-outline-primary float-right">Book Now</button></a></p><br>
 					    </div>
 				    </div>
 	            {% endfor %}

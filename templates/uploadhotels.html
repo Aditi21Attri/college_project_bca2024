@@ -65,32 +65,34 @@ a.link:active {
                         <input type="text" id="form2Example2" name="location" value="{{hotel.area}}" class="form-control" />
 
                       </div>
-                      <div class="form-outline mb-4">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="form-outline mb-4">
                          <label class="form-label" for="form2Example3">Per day stay charges</label>
                         <input type="tel" id="form2Example3" name="price" value="{{hotel.price}}" class="form-control" />
-
                       </div>
-
-                      <div class="form-outline mb-4">
+                          </div>
+                          <div class="col-6">
+                            <div class="form-outline mb-4">
                          <label class="form-label" for="form2Example3">Upload image</label>
                         <input type="file" id="form2Example4" name="file_path"  class="form-control" size="40" />
-
+                      </div>
+                          </div>
+                        </div>
                       </div>
                       <div class="form-outline mb-4">
-                        <select class="browser-default custom-select mb-2" name="h_type" id="select1" for="form2Example4">
-                            <option value="" disabled="" selected="">Room Type</option>
-                            <option value="Premium">Premium</option>
-                             <option value="Big">Big</option>
-                            <option value="Ordinary">Ordinary</option>
-
+                            <select class="browser-default custom-select" name="h_type" id="select1" for="form2Example4">
+                                <option value="{{hotel.type_of}}" disabled="" selected="">Room Type</option>
+                                <option value="Premium">Premium</option>
+                                <option value="Big">Big</option>
+                                <option value="Ordinary">Ordinary</option>
                          </select>
-
-
                       </div>
-                      <br>
-
+                      <div class="form-outline mb-4">
+                        <textarea rows="4" cols="50">{{hotel.description}}</textarea>
+                      </div>
                       <div class="d-flex justify-content-end pt-1 mb-4">
-
                         <button type="submit" class="btn btn-primary btn-rounded btn-lg" id="sendbutton"  style="background-color: #92aad0;">Add new</button>
                       </div>
                     </form>

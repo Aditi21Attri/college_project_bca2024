@@ -6,33 +6,28 @@
 </head>
 <form method="post" novalidate>
 <!--Card-->
-<br><br>
+
 <div class="card shadow mb-5 bg-white rounded">
 
 	<!--Card-Body-->
 	<div class="card-body">
 
 		<!--Card-Title-->
-		<p class="card-title text-center shadow mb-5 rounded">Hotel Booking Form</p>
-
- <div class="icons text-center">
-	 <i class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-3x"></i><i class="fa fa-building fa-2x"></i>
-	 <i class="fa fa-building-o fa-2x" aria-hidden="true"></i><i class="fa fa-building fa-4x" aria-hidden="true"></i><i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
+		<p class="card-title text-center shadow mb-5 rounded"><i class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-3x"></i><i class="fa fa-building fa-2x"></i>Hotel Booking Form	 <i class="fa fa-building-o fa-2x" aria-hidden="true"></i><i class="fa fa-building fa-3x" aria-hidden="true"></i><i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
+</p>
 
 
-
- </div>
 
     <hr>
 
-		<p class="searchText"><strong>Search For Hotel rooms</strong></p>
+		<p class="searchText"><strong>Apply filters:</strong></p>
 
 
 
 		<!--Second Row-->
 		<div class="row">
 
-			<div class="col-sm-6">
+			<div class="col-lg-4 col-sm-6">
 				<select class="browser-default custom-select mb-4" id="select1" name="destination">
         <option value="" disabled="" selected="">Destination</option>
         <option value="New Delhi">New Delhi</option>
@@ -40,37 +35,9 @@
         <option value="Solan">Solan</option>
     </select>
 			</div>
-			<div class="col-sm-6">
-				<select class="browser-default custom-select mb-4" id="select2" name="no_of_rooms">
-        <option value="" disabled="" selected="">How many rooms</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
-			</div>
 
 
-
-		</div>
-
-
-		<!--Third Row-->
-		<div class="row">
-
-			<div class="col-sm-6">
-				<p>Check In date</p>
-				<input placeholder="&#xf073; Departing" type="date"  class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome" >
-			</div>
-
-				<div class="col-sm-6">
-					<p>Check Out Date</p>
-					<input placeholder="&#xf073; Arriving" type="date"  class="form-control datepicker" style="font-family:Arial, FontAwesome" >
-			</div>
-
-				</div>
-		<div class="row">
-
-			<div class="col-sm-6">
+			<div class="col-lg-4 col-sm-6">
 				<select class="browser-default custom-select mb-4" id="select3" name="room_type">
         <option value="" disabled="" selected="">Room type</option>
         <option value="premium">Premium</option>
@@ -78,7 +45,7 @@
         <option value="ordinary">Ordinary</option>
     </select>
 			</div>
-			<div class="col-sm-6">
+			<div class="col-lg-4 col-sm-6">
 				<select class="browser-default custom-select mb-4" id="select4" name="range">
         <option value="" disabled="" selected="">Range</option>
         <option value="1000-2000">1000-2000</option>
@@ -107,8 +74,8 @@
                         <figure><img src="{{url_for('static',filename=fname)}}" alt="img" /></figure>
                         <h3>{{hotel.hotelname}}</h3>
                         <span> {{hotel.area}}</span><span>{{hotel.type}}</span>
-                        <p>{{hotel.description}}
-							<button type="button" value="{{hotel.hotelname}}" name="bookbutton" class="btn-lg btn-outline-primary float-right">Book Now</button></p><br>
+                        <p>{{hotel.description[0:100]}}....
+							<a href="/hotelbooking/{{hotel.srno}}"><button type="button" value="{{hotel.hotelname}}" name="bookbutton" class="btn-lg btn-outline-primary float-right">Book Now</button></a></p><br>
 					</div>
 				</div>
 
