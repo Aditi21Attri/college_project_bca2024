@@ -5,82 +5,52 @@
 	<link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
 </head>
 <form method="post" novalidate>
-<!--Card-->
-
 <div class="card shadow mb-5 bg-white rounded">
-
-	<!--Card-Body-->
 	<div class="card-body">
-
-		<!--Card-Title-->
-		<p class="card-title text-center shadow mb-5 rounded"><i class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-3x"></i><i class="fa fa-building fa-2x"></i>Hotel Booking Form	 <i class="fa fa-building-o fa-2x" aria-hidden="true"></i><i class="fa fa-building fa-3x" aria-hidden="true"></i><i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
-</p>
-
-
-
+		<p class="card-title text-center shadow mb-5 rounded"><i class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-3x"></i><i class="fa fa-building fa-2x"></i>Hotel Booking Form	 <i class="fa fa-building-o fa-2x" aria-hidden="true"></i><i class="fa fa-building fa-3x" aria-hidden="true"></i><i class="fa fa-building-o fa-2x" aria-hidden="true"></i></p>
     <hr>
-
 		<p class="searchText"><strong>Apply filters:</strong></p>
-
-
-
-		<!--Second Row-->
 		<div class="row">
-
-			<div class="col-lg-4 col-sm-6">
+			<div class="col-lg-5 col-sm-6">
 				<select class="browser-default custom-select mb-4" id="select1" name="destination">
-        <option value="" disabled="" selected="">Destination</option>
-        <option value="New Delhi">New Delhi</option>
-        <option value="Mumbai">Mumbai</option>
-        <option value="Solan">Solan</option>
-    </select>
+					<option value="none" selected="">Destination</option>
+					<option value="Delhi">Delhi</option>
+					<option value="Mumbai">Mumbai</option>
+					<option value="Solan">Solan</option>
+					<option value="Kasauli">Kasauli</option>
+    			</select>
 			</div>
-
-
-			<div class="col-lg-4 col-sm-6">
+			<div class="col-lg-5 col-sm-6">
 				<select class="browser-default custom-select mb-4" id="select3" name="room_type">
-        <option value="" disabled="" selected="">Room type</option>
-        <option value="premium">Premium</option>
-        <option value="big">Big</option>
-        <option value="ordinary">Ordinary</option>
-    </select>
+					<option value="none" selected="">Room type</option>
+					<option value="premium">Premium</option>
+					<option value="big">Big</option>
+					<option value="ordinary">Ordinary</option>
+				</select>
 			</div>
-			<div class="col-lg-4 col-sm-6">
-				<select class="browser-default custom-select mb-4" id="select4" name="range">
-        <option value="" disabled="" selected="">Range</option>
-        <option value="1000-2000">1000-2000</option>
-        <option value="2000-4000">2000-4000</option>
-        <option value="4000-6000">4000-6000</option>
-    </select>
+			<div class="col-lg-2 col-sm-12">
+				<button type="submit" id="sendbutton" class="btn btn-primary float-right mt-5">Find hotel</button>
 			</div>
 		</div>
-				<button type="submit" id="sendbutton" class="btn btn-primary float-right mt-5">Find hotel</button>
-
-			</div>
+	</div>
 </div>
 </form>
-
-		</div>
-
-	<div class="Lastestnews blog">
-        <div class="container">
-
-	<div class="row">
-     {% for hotel in hotels %}
-		{% set fname='uplodedfiles/'+ hotel.image_src %}
-
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
-                    <div class="news-box">
-                        <figure><img src="{{url_for('static',filename=fname)}}" alt="img" /></figure>
-                        <h3>{{hotel.hotelname}}</h3>
-                        <span> {{hotel.area}}</span><span>{{hotel.type}}</span>
-                        <p>{{hotel.description[0:100]}}....
-							<a href="/hotelbooking/{{hotel.srno}}"><button type="button" value="{{hotel.hotelname}}" name="bookbutton" class="btn-lg btn-outline-primary float-right">Book Now</button></a></p><br>
-					</div>
+<div class="Lastestnews blog">
+	<div class="container">
+		<div class="row">
+     		{% for hotel in hotels %}
+			{% set fname='uplodedfiles/'+ hotel.image_src %}
+			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
+				<div class="news-box">
+					<figure><img src="{{url_for('static',filename=fname)}}" alt="img" /></figure>
+					<h3>{{hotel.hotelname}}</h3>
+					<span> {{hotel.area}}</span><span>{{hotel.type}}</span>
+					<p>{{hotel.description[0:100]}}....<a href="/hotelbooking/{{hotel.srno}}"><button type="button" value="{{hotel.hotelname}}" name="bookbutton" class="btn-lg btn-outline-primary float-right">Book Now</button></a></p><br>
 				</div>
-
+			</div>
 	 {% endfor %}
+		</div>
 	</div>
+</div>
 
 {% endblock %}
-		</div></div>

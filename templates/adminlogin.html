@@ -66,12 +66,8 @@
 
 
                     <div class="d-flex align-items-center">
-                      <img
-                          src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                          alt=""
-                          style="width: 45px; height: 45px"
-                          class="rounded-circle"
-                          />
+                        {% set fname='uplodedfiles/'+ details.image_src %}
+                      <img src="{{url_for('static',filename=fname)}}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
                       <div class="ms-3">
                         <p class="fw-bold mb-1">{{details.hotelname}}</p>
                         <p class="text-muted mb-0">{{details.area}}</p>
@@ -99,7 +95,7 @@
 
 
                       {% endfor %}
-                        <a href="uploadhotels/0"><button type="button"class="btn btn-secondary  btn-lg">Upload new</button></a>
+                        <a href="/uploadhotels/0"><button type="button" class="btn btn-secondary  btn-lg">Upload new</button></a>
                         {% endif %}
                         {% if details_type=='users' %}
 
@@ -203,7 +199,7 @@
                                 <p class="fw-bold mb-1">{{details.helpers}}</p>
                             </td>
                             <td>
-                                <a href="/uploadhotels/{{details.srno}}"><i class="fa-edit" ><button type="button"  class="btn btn-outline-dark btn-lg">Edit</button></a>
+                                <a href="/uploadhotels/{{details.srno}}"><i class="fa-edit" ><button type="button"  class="btn btn-outline-dark btn-lg">Edit</button></i></a>
                             </td>
 
                             <td>

@@ -6,7 +6,6 @@ import os
 from werkzeug.utils import secure_filename
 import time
 
-
 with open('templates/config.json', 'r') as file:
     params = json.load(file)["parameters"]
 
@@ -41,7 +40,7 @@ class hotelsdetails(db.Model):
     hotel_slugs = db.Column(db.String(20), nullable=True)
     type_of = db.Column(db.String(20), nullable=True)
     image_src = db.Column(db.String(20), nullable=True)
-    description = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(150), nullable=False)
 
 
 class homestayvillas(db.Model):
@@ -67,7 +66,7 @@ def register():
         name = request.form.get('name')
         email = request.form.get('email')
         password = request.form.get('password')
-        entry = signindetails(name=name, password=password, email=email, date=datetime.now())
+        entry = signindetails(name=name, password=password, email=email, date=datetime.now(), type_of="users")
         db.session.add(entry)
         db.session.commit()
 
@@ -78,16 +77,19 @@ def register():
 def hotel():
     if request.method == "POST":
         destination = request.form.get('destination')
-        no_rooms = request.form.get('no_of_rooms')
         room_type = request.form.get('room_type')
-        range = request.form.get('range')
-        hotels = hotelsdetails.query.filter_by(type=room_type)
-
+        print("des:" + destination)
+        print("loc:" +room_type)
+        if destination != "none" and room_type != "none":
+            hotels = hotelsdetails.query.filter_by(type=room_type, area=destination)
+        elif room_type != "none" and destination=="none" :
+            hotels = hotelsdetails.query.filter_by(type=room_type)
+        elif destination != "none" and room_type=="none":
+            hotels = hotelsdetails.query.filter_by(area=destination)
+        else:
+            hotels = hotelsdetails.query.filter()
     else:
-
         hotels = hotelsdetails.query.filter()
-    print(hotels)
-
     return render_template("hotel.html", hotels=hotels)
 
 
@@ -124,7 +126,6 @@ def cabBooking():
 
 @app.route("/")
 def index():
-
     return render_template("index.html", )
 
 
@@ -210,19 +211,17 @@ def login():
 def hoteldetails(srno):
     if 'user' in session and session['user'] == params["admin_user"]:
         if request.method == "POST":
-
             hname = request.form.get('hotel_name')
             harea = request.form.get('location')
             cost = request.form.get('price')
             hotel_type = request.form.get('h_type')
-            f = request.files['file_path']
-            f.save(os.path.join(app.config["Uploader_url"], hname + (f.filename)))
-            image_src = hname + (f.filename)
+            description = request.form.get('description')
+            image_src = request.form.get('file_path')
             if srno == "0":
-                hotel_slug = "hotel_" + hname
-
+                hotel_slug = "hotel" + hname
                 hotel_d = hotelsdetails(hotelname=hname, area=harea, price=cost, type=hotel_type,
-                                        hotel_slugs=hotel_slug, image_src=image_src)
+                                        hotel_slugs=hotel_slug, image_src=image_src, description=description,
+                                        type_of="hotels")
                 db.session.add(hotel_d)
                 db.session.commit()
             else:
@@ -232,12 +231,45 @@ def hoteldetails(srno):
                 hotel.price = cost
                 hotel.type = hotel_type
                 hotel.image_src = image_src
+                hotel.description = description
                 hotel.hotel_slugs = "hotel_" + hname
                 db.session.commit()
                 return redirect("/uploadhotels/" + srno)
         hotels = hotelsdetails.query.filter_by(srno=srno).first()
+        return render_template("uploadhotels.html", hotel=hotels, is_new=True, is_old=True)
 
-        return render_template("uploadhotels.html", hotel=hotels)
+
+@app.route("/uploadhomestay/<string:srno>", methods=['GET', 'POST'])
+def uploadhomesstay(srno):
+    if 'user' in session and session['user'] == params["admin_user"]:
+        if request.method == "POST":
+            hname = request.form.get('hotel_name')
+            harea = request.form.get('location')
+            cost = request.form.get('price')
+            hotel_type = request.form.get('h_type')
+            description = request.form.get('description')
+            print(hotel_type)
+            f = request.files['file_path']
+            f.save(os.path.join(app.config["Uploader_url"], hname + (f.filename)))
+            image_src = hname + f.filename
+            if srno == "0":
+                home_stay = homestayvillas(homestayname="jsjd", area="hiuasc", img_src="ihhv", price="42",
+                                           description="fawf", roomoffered="fwwaf", helper="2")
+                db.session.add(home_stay)
+                db.session.commit()
+
+            else:
+                hotel = hotelsdetails.query.filter_by(srno=srno).first()
+                hotel.hotelname = hname
+                hotel.area = harea
+                hotel.price = cost
+                hotel.type = hotel_type
+
+                hotel.hotel_slugs = "hotel_" + hname
+                db.session.commit()
+                return redirect("/uploadhomestay/" + srno)
+        hotels = hotelsdetails.query.filter_by(srno=srno).first()
+        return render_template("uploadhomes.html", hotel=hotels)
 
 
 @app.route("/delete/<string:srno>", methods=['GET', 'POST'])
