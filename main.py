@@ -40,7 +40,7 @@ class hotelsdetails(db.Model):
     hotel_slugs = db.Column(db.String(20), nullable=True)
     type_of = db.Column(db.String(20), nullable=True)
     image_src = db.Column(db.String(20), nullable=True)
-    description = db.Column(db.String(150), nullable=False)
+    description = db.Column(db.String(300), nullable=False)
 
 
 class homestayvillas(db.Model):
@@ -51,13 +51,15 @@ class homestayvillas(db.Model):
     price = db.Column(db.String(20), nullable=True)
     description = db.Column(db.String(50), nullable=True)
     roomsoffered = db.Column(db.String(20), nullable=True)
-    helpers = db.Column(db.String(50), nullable=True)
-
 
 @app.route("/hotelbooking/<string:srno>")
 def hotelbooking(srno):
     hotel = hotelsdetails.query.filter_by(srno=srno).first()
     return render_template("hotelbooking.html", hotel=hotel)
+@app.route("/homestaybooking/<string:srno>")
+def homestaybooking(srno):
+    homestay = homestayvillas.query.filter_by(srno=srno).first()
+    return render_template("homestaybooking.html", homestay=homestay)
 
 
 @app.route("/register.html", methods={'GET', 'POST'})
@@ -97,15 +99,12 @@ def hotel():
 def homestayVillas():
     if request.method == "POST":
         destination = request.form.get('destination')
-        helper_wanted = request.form.get('helper_wanted')
-        checkin = request.form.get('checkin')
-        checkout = request.form.get('checkout')
-        range = request.form.get('range')
-        homestays = homestayvillas.query.filter_by(area=destination)
+        if destination=="none":
+            homestays = homestayvillas.query.filter()
+        else:
+            homestays = homestayvillas.query.filter_by(area=destination)
     else:
         homestays = homestayvillas.query.filter()
-    print(homestays)
-
     return render_template("homestays.html", homestays=homestays)
 
 
@@ -243,33 +242,29 @@ def hoteldetails(srno):
 def uploadhomesstay(srno):
     if 'user' in session and session['user'] == params["admin_user"]:
         if request.method == "POST":
-            hname = request.form.get('hotel_name')
+            hname = request.form.get('home_name')
             harea = request.form.get('location')
             cost = request.form.get('price')
-            hotel_type = request.form.get('h_type')
+            image_src = request.form.get('file_path')
             description = request.form.get('description')
-            print(hotel_type)
-            f = request.files['file_path']
-            f.save(os.path.join(app.config["Uploader_url"], hname + (f.filename)))
-            image_src = hname + f.filename
+            rooms = request.form.get('rooms_offered')
             if srno == "0":
-                home_stay = homestayvillas(homestayname="jsjd", area="hiuasc", img_src="ihhv", price="42",
-                                           description="fawf", roomoffered="fwwaf", helper="2")
+                home_stay = homestayvillas(homestayname=hname,area=harea,price=cost,description=description,image_src=image_src,roomsoffered=rooms)
                 db.session.add(home_stay)
                 db.session.commit()
 
             else:
-                hotel = hotelsdetails.query.filter_by(srno=srno).first()
-                hotel.hotelname = hname
-                hotel.area = harea
-                hotel.price = cost
-                hotel.type = hotel_type
-
-                hotel.hotel_slugs = "hotel_" + hname
+                homes = homestayvillas.query.filter_by(srno=srno).first()
+                homes.homestayname = hname
+                homes.area = harea
+                homes.price = cost
+                homes.description = description
+                homes.image_src= image_src
+                homes.roomsffered=rooms
                 db.session.commit()
                 return redirect("/uploadhomestay/" + srno)
-        hotels = hotelsdetails.query.filter_by(srno=srno).first()
-        return render_template("uploadhomes.html", hotel=hotels)
+        homes = homestayvillas.query.filter_by(srno=srno).first()
+        return render_template("uploadhomes.html", home=homes)
 
 
 @app.route("/delete/<string:srno>", methods=['GET', 'POST'])

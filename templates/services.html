@@ -53,6 +53,8 @@
          </div>
       </div>
 <hr>
+<div class="title">
+    <h2>OUR<strong class="black"> POPULAR CHOISES</strong></h2>
 
 	<div class="Lastestnews blog">
         <div class="container">
@@ -61,27 +63,32 @@
                 {% set fname='uplodedfiles/'+ hotel.image_src %}
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
                         <div class="news-box">
-                            <figure><img src="{{url_for('static',filename=fname)}}" /></figure>
-                            <h3>{{hotel.hotelname}}</h3>
-                            <span> {{hotel.area}}</span><span>{{hotel.type}}</span>
-                            <p>{{hotel.description[0:100]}}
-                                <a href="/hotelbooking/{{hotel.srno}}"><button type="button" class="btn-lg btn-outline-primary float-right">Book Now</button></a></p><br>
+                            <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" /></figure>
+                            <h3 class="text-dark font-weight-bold">{{hotel.hotelname}}</h3><hr style=" border-top: 2px dashed red;">
+                            <span class="text-info"> {{hotel.area}}</span><span>{{hotel.type}}</span>
+                            <p>{{hotel.description[0:100]}}.......
+                                <a href="/hotelbooking/{{hotel.srno}}"><button type="button" class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now</button></a></p><br>
 					    </div>
 				    </div>
 	            {% endfor %}
 	        </div>
             <div class="row">
                 {% for homestay in homestays %}
+                {% set fname='uplodedfiles/'+ homestay.image_src %}
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
                     <div class="news-box">
-                        <figure><img src="" alt="img" /></figure>
-                        <h3>{{homestay.homestayname}}</h3>
-                        <span> {{homestay.area}}</span><span>{{homestay.price}}</span>
-                        <p>{{homestay.description}}</p>
+                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" alt="img" /></figure>
+                        <h3 class="text-dark font-weight-bold">{{homestay.homestayname}}</h3><hr style=" border-top: 2px dashed red;">
+                        <span class="text-info"> {{homestay.area}}</span><span class="text-secondary">Rs.{{homestay.price}}/-</span>
+                        <p>{{homestay.description[0:100]}}.....
+                        <a href="/homestaybooking/{{homestay.srno}}"><button type="button" class="btn-lg btn-outline-primary font-weight-bold float-right">Book Now</button></a></p><br>
                     </div>
                 </div>
                 {% endfor %}
             </div>
+
+</div>
+
 
 {% endblock %}
 		</div></div>

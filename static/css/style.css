@@ -1760,7 +1760,7 @@ margin-top: 20px;
 }
 
 .title h2 {
-	font-size: 50px;
+	font-size: 60px;
 	line-height: 55px;
 	color:#44318d;
 	font-weight: 500;
@@ -2231,12 +2231,6 @@ ul.lik li a:hover {
 
 
 .product_page .title {text-align: center;}
-
-
-
-
-
-
 /** Lastestnews **/
  .Lastestnews {
      padding:90px 0px;
@@ -2270,13 +2264,13 @@ ul.lik li a:hover {
      padding: 20px 20px 4px 20px;
 }
  .Lastestnews .news-box span {
-     color: #e61414;
+     color: rgba(230, 20, 20, 0.86);
      margin-left: 20px;
 }
  .Lastestnews .news-box p{
      color: #7b7a7a;
      font-size:16px;
-     line-height: 23px;
+     line-height: 18px;
      padding: 7px 20px 20px 20px;
 }
 /** Lastestnews **/

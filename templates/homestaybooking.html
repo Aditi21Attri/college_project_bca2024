@@ -3,7 +3,7 @@
 <head>
 	<link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
 </head>
-<a href="/hotel"> <button class="btn-lg btn-outline-primary  pl-5" ><i class="fa fa-arrow-circle-o-left">Go Back</i></button></a>
+<a href="/homestay"> <button class="btn-lg btn-outline-primary  pl-5" ><i class="fa fa-arrow-circle-o-left">Go Back</i></button></a>
 <div class="container" style="background-color: rgba(192,192,192,0.89)">
 	<div class="row">
 		<div class="col-6">
@@ -11,19 +11,19 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						{% set fname='uplodedfiles/'+ hotel.image_src %}
-						<img src="{{url_for('static',filename=fname)}}" alt="img" /><br>
-					<span class="text-primary font-weight-bold text-lg-center" style="font-size: 20px">HOTEL :{{hotel.hotelname}}</span><br>
-					<span class="text-darks font-weight-bold text-danger"> {{hotel.area}}</span><br>
-					<span class="text-darks font-weight-bold text-danger"> {{hotel.price}}/-per day</span><br>
-					<span class="font-weight-bold text-danger">{{hotel.type}}</span><br>
-					<p class="font-weight-normal">{{hotel.description}}</p>
+						{% set fname='uplodedfiles/'+ homestay.image_src %}
+						<img src="{{url_for('static',filename=fname)}}" style="width: 500px; height: 250px" class="rounded-bottom" alt="img" /><br>
+					<span class="text-primary font-weight-bold text-lg-center" style="font-size: 20px">HOMESTAY :{{homestay.homestayname}}</span><br>
+					<span class="text-darks font-weight-bold text-danger"> {{homestay.area}}</span><br><span class="text-danger font-weight-bold">Rooms : {{homestay.roomsoffered}}</span><br>
+					<span class="text-darks font-weight-bold text-danger"> {{homestay.price}}/-per day</span><br>
+					<br>
+					<p class="font-weight-normal text-dark">{{homestay.description}}</p>
 					<br>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-6"><br><br>
+		<div class="col-6"><br><br><br>
 			<form method="post" novalidate>
 				<div class="card shadow mb-1 bg-white rounded">
 					<div class="card-body">
@@ -55,7 +55,7 @@
 						</div>
 					</div>
 				</div>
-			</form><br>
+			</form>
 		</div>
 	</div>
 </div><br>
