@@ -2,9 +2,7 @@ from flask import Flask, render_template, request, session, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json
-import os
-from werkzeug.utils import secure_filename
-import time
+
 
 with open('templates/config.json', 'r') as file:
     params = json.load(file)["parameters"]
@@ -52,15 +50,29 @@ class homestayvillas(db.Model):
     description = db.Column(db.String(50), nullable=True)
     roomsoffered = db.Column(db.String(20), nullable=True)
 
+class tourcabs(db.Model):
+    srno = db.Column(db.Integer, primary_key=True)
+    cab_name = db.Column(db.String(20), unique=False, nullable=False)
+    cab_type = db.Column(db.String(25), nullable=False)
+    price = db.Column(db.String(20), nullable=False)
+    seats_available= db.Column(db.String(20), nullable=False)
+    cab_description = db.Column(db.String(300), nullable=False)
+    image_src= db.Column(db.String(300), nullable=False)
+
 @app.route("/hotelbooking/<string:srno>")
 def hotelbooking(srno):
     hotel = hotelsdetails.query.filter_by(srno=srno).first()
     return render_template("hotelbooking.html", hotel=hotel)
+
 @app.route("/homestaybooking/<string:srno>")
 def homestaybooking(srno):
     homestay = homestayvillas.query.filter_by(srno=srno).first()
     return render_template("homestaybooking.html", homestay=homestay)
 
+@app.route("/cabbook/<string:srno>")
+def cabbook(srno):
+    cabs = tourcabs.query.filter_by(srno=srno).first()
+    return render_template("cabbook.html", cab=cabs)
 
 @app.route("/register.html", methods={'GET', 'POST'})
 def register():
@@ -106,6 +118,12 @@ def homestayVillas():
     else:
         homestays = homestayvillas.query.filter()
     return render_template("homestays.html", homestays=homestays)
+
+@app.route("/cabs", methods={'GET', 'POST'})
+def cabs():
+
+    cab_all = tourcabs.query.all()
+    return render_template("cabs.html", cabes=cab_all)
 
 
 @app.route("/cabbooking", methods={'GET', 'POST'})
@@ -172,6 +190,12 @@ def login():
                 details_given = 'True'
                 return render_template("adminlogin.html", details_wanted=homestays, params=params,
                                        details_given=details_given, details_type="homestays")
+            elif details_of == "cabs":
+                cab = tourcabs.query.filter()
+                details_given = 'True'
+                return render_template("adminlogin.html", details_wanted=cab, params=params,
+                                       details_given=details_given, details_type="cabs")
+
             elif details_of == "signindetails":
                 users = signindetails.query.filter()
                 details_given = 'True'
@@ -265,6 +289,35 @@ def uploadhomesstay(srno):
                 return redirect("/uploadhomestay/" + srno)
         homes = homestayvillas.query.filter_by(srno=srno).first()
         return render_template("uploadhomes.html", home=homes)
+
+@app.route("/uploadcabs/<string:srno>", methods=['GET', 'POST'])
+def uploadcabs(srno):
+    if 'user' in session and session['user'] == params["admin_user"]:
+        if request.method == "POST":
+            cab_name = request.form.get('cab_name')
+            cab_type =request.form.get('ctype')
+            price = request.form.get('price')
+            image_src=request.form.get('file_path')
+            seats_available = request.form.get('seats')
+            cab_description = request.form.get('description')
+            if srno == "0":
+                cab=tourcabs(cab_name=cab_name,cab_type=cab_type,price=price,image_src=image_src,seats_available=seats_available,cab_description=cab_description)
+                db.session.add(cab)
+                db.session.commit()
+
+            else:
+                cab = cabs.query.filter_by(srno=srno).first()
+                cab.cab_name = cab_name
+                cab.cab_type=cab_type
+                cab.cab_description=cab_description
+                cab.price=price
+                cab.image_src=image_src
+                cab.seats_available=seats_available
+                db.session.commit()
+                return redirect("/uploadcabs/" + srno)
+        cab = cabs.query.filter_by(srno=srno).first()
+        return render_template("uploadcabs.html", cab=cab)
+
 
 
 @app.route("/delete/<string:srno>", methods=['GET', 'POST'])

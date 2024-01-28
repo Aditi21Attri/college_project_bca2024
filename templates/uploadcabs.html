@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block head %}
+<head>
+	<link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
+</head>
+<div class="container">
+	<div class="row">
+      <div class="col-12">
+			<form method="post" novalidate>
+              <div class="card shadow mb-1 bg-white rounded">
+					<div class="card-body">
+						<p class="card-title text-center shadow mb-5 rounded">CAB Upload/Edit Form</p><hr>
+                        <div class="form-outline mb-4">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="form-label" >Cab Name:</label>
+                                         <input type="text" placeholder="Enter cab name here" name="cab_name" value="{{cab.cab_name}}" class="form-control" />
+
+                                        <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example2">Cab Type:</label>
+                                        <input type="text" id="form2Example2" name="ctype" value="{{cab.cab_type}}" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        {% set fname='uplodedfiles/cab.jpg' %}
+                                        <img src="{{url_for('static',filename=fname)}}" alt="Upload New" style="width: 100%; height: 80%" class="rounded-circle"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="form-outline mb-4">
+                         <label class="form-label" for="form2Example3">Per day charges</label>
+                        <input type="tel" id="form2Example3" name="price" value="{{cab.price}}/-Km" class="form-control" />
+                      </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-outline mb-4">
+                         <label class="form-label" >Image name</label>
+                        <input type="text"  name="file_path" value="{{cab.image_src}}" class="form-control" />
+                      </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-outline mb-4">
+                            <label class="form-label">Seating Capacity</label>
+                        <input type="text" name="seats" value="{{cab.seats_available}}" class="form-control" />
+                      </div><br><hr>
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-lg-7 col-sm-12">
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Description</label>
+                                <textarea rows="5" cols="100" name="description">{{cab.cab_description}}</textarea>
+                            </div>
+                          </div>
+                          <div class="col-lg-5 col-sm-12">
+                            <button type="submit" id="sendbutton" class="btn btn-primary btn-lg float-right mt-5">UPLOAD</button>
+                          </div>
+                        </div>
+                      </div>
+					</div>
+				</div>
+              </div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
