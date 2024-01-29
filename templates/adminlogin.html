@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block head %}
+<div class="title">
        <div class="brand_color">
         <div class="container">
             <div class="row">
@@ -12,7 +13,7 @@
         </div>
 
     </div>
-
+</div>
 <div class="about">
    <div class="container">
       <div class="row">
@@ -35,7 +36,7 @@
                              <option value="signindetails">Users</option>
                             <option value="cabs">Cabs</option>
                             <option value="homestayvillas">Homestays and villas</option>
-                            <option value="Solan">Tour and travels</option>
+                            <option value="tourpackages">Tour and travels</option>
                          </select>
                     </div>
                 </div>
@@ -249,18 +250,74 @@
                                 <button type="button" class="btn btn-outline-danger  btn-lg">Delete</button>
                             </td>
                         </tr>
+                          {% endfor %}
+                        <a href="/uploadhomestay/0"><button type="button" class="btn btn-secondary  btn-lg">Upload new</button></a>
+                        {% endif %}
+
+
+                        {% if details_type=='tourpackages' %}
+                     <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
+                        <tr>
+                          <th>TourPackage </th>
+                          <th>Location</th>
+                          <th>Per person charges</th>
+                            <th>Days</th>
+                            <th>Description</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+
+
+                        </tr>
+                      </thead>
+                   {% for details in details_wanted %}
+                      <tbody>
+                        <tr>
+                          <td>
+
+
+                    <div class="d-flex align-items-center">
+                      {% set fname='uplodedfiles/'+ details.image_src %}
+                      <img src="{{url_for('static',filename=fname)}}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
+                      <div class="ms-3">
+                        <p class="fw-bold mb-1">{{details.tourname}}</p>
+
+                      </div>
+                    </div>
+                          </td>
+                            <td>
+                                <p class="fw-bold mb-1">{{details.area}}</p>
+                            </td>
+                            <td>
+                                <p class="fw-bold mb-1">{{details.price}}/-person</p>
+                            </td>
+                            <td>
+                                <p class="fw-bold mb-1">{{details.days}}</p>
+                            </td>
+                            <td>
+                                <p class="fw-bold mb-1">{{details.description[0:20]}}..</p>
+                            </td>
+                            <td>
+                                <a href="/uploadtourpack/{{details.srno}}"><div class="text-primary"><i class="fa fa-edit fa-3x"></i></div></a>
+                            </td>
+
+                            <td>
+                                <button type="button" class="btn btn-outline-danger  btn-lg">Delete</button>
+                            </td>
+                        </tr>
 
 
 
 
                           {% endfor %}
-                        <a href="/uploadhomestay/0"><button type="button" class="btn btn-secondary  btn-lg">Upload new</button></a>
+                        <a href="/uploadtourpack/0"><button type="button" class="btn btn-secondary  btn-lg">Upload new</button></a>
                         {% endif %}
 
                           {% endif %}
 
 
 
+                      </tbody></table>
                       </tbody></table>
                       </tbody></table>
                       </tbody></table>

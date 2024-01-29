@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json
@@ -59,6 +59,15 @@ class tourcabs(db.Model):
     cab_description = db.Column(db.String(300), nullable=False)
     image_src= db.Column(db.String(300), nullable=False)
 
+class tourpackages(db.Model):
+    srno = db.Column(db.Integer, primary_key=True)
+    tourname = db.Column(db.String(20), unique=False, nullable=False)
+    area = db.Column(db.String(25), nullable=False)
+    image_src = db.Column(db.String(20), nullable=False)
+    price = db.Column(db.String(20), nullable=True)
+    description = db.Column(db.String(50), nullable=True)
+    days= db.Column(db.String(20), nullable=True)
+
 @app.route("/hotelbooking/<string:srno>")
 def hotelbooking(srno):
     hotel = hotelsdetails.query.filter_by(srno=srno).first()
@@ -73,6 +82,11 @@ def homestaybooking(srno):
 def cabbook(srno):
     cabs = tourcabs.query.filter_by(srno=srno).first()
     return render_template("cabbook.html", cab=cabs)
+
+@app.route("/tourpackbook/<string:srno>")
+def tourpackbook(srno):
+    tours = tourpackages.query.filter_by(srno=srno).first()
+    return render_template("tourpackbook.html", tour=tours)
 
 @app.route("/register.html", methods={'GET', 'POST'})
 def register():
@@ -121,10 +135,20 @@ def homestayVillas():
 
 @app.route("/cabs", methods={'GET', 'POST'})
 def cabs():
-
     cab_all = tourcabs.query.all()
     return render_template("cabs.html", cabes=cab_all)
 
+@app.route("/tour", methods={'GET', 'POST'})
+def tour():
+    if request.method == "POST":
+        destination = request.form.get('destination')
+        if destination=="none":
+            tours = tourpackages.query.filter()
+        else:
+            tours = tourpackages.query.filter_by(area=destination)
+    else:
+        tours = tourpackages.query.all()
+    return render_template("tour.html", tours=tours)
 
 @app.route("/cabbooking", methods={'GET', 'POST'})
 def cabBooking():
@@ -171,8 +195,11 @@ def contact():
 
 @app.route("/logout")
 def logout():
-    session.pop('user')
-    return render_template("login.html")
+    if 'user' in session and session['user'] == params["admin_user"]:
+        session.pop('user',None)
+        res=app.make_response(render_template("login"))
+        res.set_cookie('user',expires=0)
+    return res
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -201,6 +228,11 @@ def login():
                 details_given = 'True'
                 return render_template("adminlogin.html", details_wanted=users, params=params,
                                        details_given=details_given, details_type="users")
+            elif details_of == "tourpackages":
+                tours = tourpackages.query.filter()
+                details_given = 'True'
+                return render_template("adminlogin.html", details_wanted=tours, params=params,
+                                       details_given=details_given, details_type="tourpackages")
 
             else:
                 return render_template("login.html")
@@ -216,15 +248,18 @@ def login():
         user_pass = request.form.get('user_password')
         if user_details == params["admin_user"] and user_pass == params["admin_password"]:
             session['user'] = user_details
-            return render_template("adminlogin.html", params=params)
+            return render_template("adminlogin.html", params=params,invalid="False")
 
-        else:
+
+        elif user_details!="" and user_pass!="":
             users = signindetails.query.filter()
-
             for user in users:
                 if user_details == user.email and user_pass == user.password:
-                    return render_template("userloginpage.html")
-                print(user.email)
+                    session["users"]=user_details
+                    return render_template("userdashboard.html",invalid="False")
+
+        else:
+            return render_template("login.html",params=params,invalid="True")
 
     else:
         return render_template("login.html")
@@ -306,7 +341,7 @@ def uploadcabs(srno):
                 db.session.commit()
 
             else:
-                cab = cabs.query.filter_by(srno=srno).first()
+                cab = tourcabs.query.filter_by(srno=srno).first()
                 cab.cab_name = cab_name
                 cab.cab_type=cab_type
                 cab.cab_description=cab_description
@@ -315,8 +350,36 @@ def uploadcabs(srno):
                 cab.seats_available=seats_available
                 db.session.commit()
                 return redirect("/uploadcabs/" + srno)
-        cab = cabs.query.filter_by(srno=srno).first()
+        cab = tourcabs.query.filter_by(srno=srno).first()
         return render_template("uploadcabs.html", cab=cab)
+
+@app.route("/uploadtourpack/<string:srno>", methods=['GET', 'POST'])
+def uploadtourpack(srno):
+    if 'user' in session and session['user'] == params["admin_user"]:
+        if request.method == "POST":
+            tour_name = request.form.get('tour_name')
+            area =request.form.get('area')
+            price = request.form.get('price')
+            image_src=request.form.get('file_path')
+            days = request.form.get('days')
+            tour_description = request.form.get('description')
+            if srno == "0":
+                tour=tourpackages(tourname=tour_name,area=area,price=price,image_src=image_src,days=days,description=tour_description)
+                db.session.add(tour)
+                db.session.commit()
+
+            else:
+                tours = tourpackages.query.filter_by(srno=srno).first()
+                tours.tourname = tour_name
+                tours.area=area
+                tours.description=tour_description
+                tours.price=price
+                tours.image_src=image_src
+                tours.days=days
+                db.session.commit()
+                return redirect("/uploadtourpack/" + srno)
+        tours = tourpackages.query.filter_by(srno=srno).first()
+        return render_template("uploadtourpack.html", tour=tours)
 
 
 
@@ -327,6 +390,8 @@ def delete_hotel(srno):
         db.session.delete(hotel)
         db.session.commit()
     return redirect("/login")
-
+@app.route("/adminlogin", methods=['GET', 'POST'])
+def delete_hotel():
+    return render_template("adminlogin.html")
 
 app.run(debug=True)

@@ -9,6 +9,7 @@
     "admin_password": "YessweCan",
     "admin_name": "ADITI ATTRI",
     "file_save_url": "C:\\Users\\DELL\\OneDrive\\Desktop\\College Project\\static\\uplodedfiles",
-    "no_of_services": 3
+    "no_of_services": 3,
+    "invalid_message": "Invalid Login Id"
   }
 }

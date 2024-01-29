@@ -12,7 +12,7 @@
 				<div class="row">
 					<div class="col-12">
 						{% set fname='uplodedfiles/'+ hotel.image_src %}
-						<img src="{{url_for('static',filename=fname)}}" alt="img" /><br>
+						<img src="{{url_for('static',filename=fname)}}" alt="img" style="width: 500px; height: 250px"/><br>
 					<span class="text-primary font-weight-bold text-lg-center" style="font-size: 20px">HOTEL :{{hotel.hotelname}}</span><br>
 					<span class="text-darks font-weight-bold text-danger"> {{hotel.area}}</span><br>
 					<span class="text-darks font-weight-bold text-danger"> {{hotel.price}}/-per day</span><br>
