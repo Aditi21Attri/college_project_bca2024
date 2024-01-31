@@ -46,9 +46,9 @@ class homestayvillas(db.Model):
     homestayname = db.Column(db.String(20), unique=False, nullable=False)
     area = db.Column(db.String(25), nullable=False)
     image_src = db.Column(db.String(20), nullable=False)
-    price = db.Column(db.String(20), nullable=True)
-    description = db.Column(db.String(50), nullable=True)
-    roomsoffered = db.Column(db.String(20), nullable=True)
+    price = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(50), nullable=False)
+    roomsoffered = db.Column(db.String(20), nullable=False)
 
 class tourcabs(db.Model):
     srno = db.Column(db.Integer, primary_key=True)
@@ -64,27 +64,95 @@ class tourpackages(db.Model):
     tourname = db.Column(db.String(20), unique=False, nullable=False)
     area = db.Column(db.String(25), nullable=False)
     image_src = db.Column(db.String(20), nullable=False)
-    price = db.Column(db.String(20), nullable=True)
-    description = db.Column(db.String(50), nullable=True)
-    days= db.Column(db.String(20), nullable=True)
+    price = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(50), nullable=False)
+    days= db.Column(db.String(20), nullable=False)
+class user_bookings(db.Model):
+    srno = db.Column(db.Integer, primary_key=True)
+    e_name = db.Column(db.String(20), unique=False, nullable=False)
+    service_name = db.Column(db.String(20), unique=False, nullable=False)
+    check_in = db.Column(db.String(25), nullable=False)
+    days = db.Column(db.String(20), nullable=True)
+    rooms = db.Column(db.String(20), nullable=True)
+    from_des = db.Column(db.String(50), nullable=True)
+    to_des = db.Column(db.String(20), nullable=True)
+    days = db.Column(db.String(20), nullable=True)
+    time = db.Column(db.String(20), nullable=True)
+    people = db.Column(db.String(20), nullable=True)
+    total = db.Column(db.String(20), nullable=True)
+    type_of = db.Column(db.String(20), nullable=False)
 
-@app.route("/hotelbooking/<string:srno>")
+@app.route("/hotelbooking/<string:srno>",methods=["GET","POST"])
 def hotelbooking(srno):
+    if "users" in session:
+        if request.method=="POST":
+            no_rooms=request.form.get("rooms")
+            check_in=request.form.get("checkin")
+            days=request.form.get("days")
+            hotel = hotelsdetails.query.filter_by(srno=srno).first()
+            hotel_name=hotel.hotelname
+            from_des=hotel.area
+            total=int(hotel.price)*int(no_rooms)*int(days)
+            booking=user_bookings(e_name=session['users'],service_name=hotel_name,rooms=no_rooms,check_in=check_in,days=days,total=total,type_of="hotel",from_des=from_des)
+            db.session.add(booking)
+            db.session.commit()
     hotel = hotelsdetails.query.filter_by(srno=srno).first()
     return render_template("hotelbooking.html", hotel=hotel)
 
-@app.route("/homestaybooking/<string:srno>")
+@app.route("/homestaybooking/<string:srno>",methods=["GET","POST"])
 def homestaybooking(srno):
+    if "users" in session:
+        if request.method == "POST":
+            check_in = request.form.get("checkin")
+            days = request.form.get("days")
+            homestay = homestayvillas.query.filter_by(srno=srno).first()
+            homestay_name=homestay.homestayname
+            from_des=homestay.area
+            total = int(homestay.price) * int(days)
+            booking = user_bookings(e_name=session['users'], service_name=homestay_name, check_in=check_in,
+                                    days=days, total=total, type_of="homestay",from_des=from_des,rooms=homestay.roomsoffered)
+            db.session.add(booking)
+            db.session.commit()
+
     homestay = homestayvillas.query.filter_by(srno=srno).first()
     return render_template("homestaybooking.html", homestay=homestay)
 
-@app.route("/cabbook/<string:srno>")
+@app.route("/cabbook/<string:srno>",methods=["GET","POST"])
 def cabbook(srno):
+    if "users" in session:
+        if request.method == "POST":
+            days = request.form.get("days")
+            print(days)
+            from_des = request.form.get("from")
+            to_des= request.form.get("to")
+            check_in = request.form.get("checkin")
+            time = request.form.get("time")
+            cabs = tourcabs.query.filter_by(srno=srno).first()
+            cab_name = cabs.cab_name
+            booking = user_bookings(e_name=session['users'], service_name=cab_name, check_in=check_in,from_des=from_des,to_des=to_des,time=time,
+                                    days=days, type_of="cabs",rooms=cabs.seats_available)
+            db.session.add(booking)
+            db.session.commit()
+
     cabs = tourcabs.query.filter_by(srno=srno).first()
     return render_template("cabbook.html", cab=cabs)
 
-@app.route("/tourpackbook/<string:srno>")
+@app.route("/tourpackbook/<string:srno>",methods=["GET","POST"])
 def tourpackbook(srno):
+    if request.method == "POST":
+        people = request.form.get("people")
+        check_in = request.form.get("checkin")
+        time = request.form.get("time")
+        tours = tourpackages.query.filter_by(srno=srno).first()
+        days=tours.days
+        tour_name = tours.tourname
+        from_des=tours.area
+        total=int(tours.price)*int(people)
+        booking = user_bookings(e_name=session['users'], service_name=tour_name, check_in=check_in, time=time,
+                                people=people, type_of="tourpack",total=total,days=days,from_des=from_des)
+        db.session.add(booking)
+        db.session.commit()
+
     tours = tourpackages.query.filter_by(srno=srno).first()
     return render_template("tourpackbook.html", tour=tours)
 
@@ -195,11 +263,13 @@ def contact():
 
 @app.route("/logout")
 def logout():
-    if 'user' in session and session['user'] == params["admin_user"]:
-        session.pop('user',None)
-        res=app.make_response(render_template("login"))
-        res.set_cookie('user',expires=0)
-    return res
+    session.pop('user',None)
+    return redirect("/login")
+
+@app.route("/logout_user")
+def logout_user():
+    session.pop('users',None)
+    return redirect("/login")
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -242,6 +312,13 @@ def login():
             details = 'False'
 
             return render_template("adminlogin.html", params=params, details_given=details)
+    elif 'users' in session:
+        logged_user=session['users']
+        print(logged_user)
+        login_user=signindetails.query.filter_by(email=logged_user).first()
+        bookings=user_bookings.query.filter_by(e_name=session["users"])
+
+        return render_template("userdashboard.html", params=params, invalid="False",user_data=login_user,details_wanted=bookings)
 
     elif request.method == 'POST':
         user_details = request.form.get('user_name')
@@ -256,7 +333,8 @@ def login():
             for user in users:
                 if user_details == user.email and user_pass == user.password:
                     session["users"]=user_details
-                    return render_template("userdashboard.html",invalid="False")
+                    logged_user=signindetails.query.filter_by(email=user_details).first()
+                    return render_template("userdashboard.html",invalid="False", params=params,user_data=logged_user)
 
         else:
             return render_template("login.html",params=params,invalid="True")
@@ -391,7 +469,7 @@ def delete_hotel(srno):
         db.session.commit()
     return redirect("/login")
 @app.route("/adminlogin", methods=['GET', 'POST'])
-def delete_hotel():
+def admindashboard():
     return render_template("adminlogin.html")
 
 app.run(debug=True)

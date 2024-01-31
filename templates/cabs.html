@@ -14,7 +14,7 @@
 					<figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" alt="img" /></figure>
 					<h3 class="text-dark font-weight-bold">{{cab.cab_name}}</h3><hr style=" border-top: 2px dashed red;">
 					<span class="text-info"> {{cab.cab_type}}</span><span class="text-secondary">Rs.{{cab.price}}/-Km</span>
-					<p>{{cab.cab_description[0:100]}}....<a href="/cabbook/{{cab.srno}}"><button type="button"  name="bookbutton" class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now</button></a></p><br>
+					<p>{{cab.cab_description[0:100]}}....<a href="/cabbook/{{cab.srno}}" ><button type="button"  name="bookbutton" class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now</button></a></p><br>
 				</div>
 			</div>
 	 {% endfor %}

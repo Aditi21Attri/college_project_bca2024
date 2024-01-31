@@ -27,28 +27,23 @@
 			<form method="post" novalidate>
 				<div class="card shadow mb-1 bg-white rounded">
 					<div class="card-body">
-						<p class="card-title text-center shadow mb-5 rounded">HOTEL BOOKING FORM</p><hr>
-						<p class="searchText"><strong>Book your hotel </strong></p>
-						<div class="row">
-							<div class="col-12">
-								<select class="browser-default custom-select mb-4" id="select2" name="helper_wanted">
-									<option value="" disabled="" selected="">No of Rooms:</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-								</select>
-							</div>
-						</div>
+						<p class="card-title text-center shadow mb-5 rounded">HOMESTAY BOOKING FORM</p><hr>
+						<p class="searchText"><strong>Book your hotel </strong></p><br>
+
 						<div class="row">
 							<div class="col-sm-12">
 								<p>Check In date</p>
 								<input placeholder="&#xf073; Departing" name="checkin" type="date" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome" >
 							</div>
 							<div class="col-sm-12">
-								<p>Check Out Date</p>
-								<input placeholder="&#xf073; Arriving" name="checkout" type="date" class="form-control datepicker" style="font-family:Arial, FontAwesome" >
-							</div>
+								<p>How many days:</p>
+								<select class="browser-default custom-select mb-4" name="days">
+									<option value="" disabled="" selected="">No of Days:</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+								</select>
 						</div>
 						<div class="col-sm-12">
 							<button type="submit" id="sendbutton" class="btn btn-primary btn-lg float-right mt-5">BOOK NOW</button>

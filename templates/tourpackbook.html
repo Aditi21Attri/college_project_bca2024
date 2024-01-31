@@ -31,7 +31,7 @@
 						<p class="searchText"><strong>Book your tour </strong></p>
 						<div class="row">
 							<div class="col-12">
-								<select class="browser-default custom-select mb-4" required >
+								<select class="browser-default custom-select mb-4" name="people" required >
 												<option value="" disabled="" selected="">Number of Persons :</option>
 												<option value="1">1</option>
 												<option value="2">2</option>
@@ -48,11 +48,11 @@
 											<input placeholder="&#xf073; Departing" name="checkin" type="date" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome"  required>
 										</div>
 											<div class="col-6">
-											<select class="browser-default custom-select mb-4" required>
-												<option value="" disabled="" selected="">PickUp time</option>
-												<option value="1">6:00 AM</option>
-												<option value="2">3:00 PM</option>
-												<option value="3">6:00 PM</option>
+											<select class="browser-default custom-select mb-4" name="time" required>
+												<option value="6:00 AM" disabled="" selected="">PickUp time</option>
+												<option value="6:00 AM">6:00 AM</option>
+												<option value="7:00 AM">7:00 PM</option>
+												<option value="8:00 AM">8:00 PM</option>
 											</select>
 									</div>
 								</div>

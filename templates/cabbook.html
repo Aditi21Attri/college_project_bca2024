@@ -32,7 +32,7 @@
 						<p class="searchText"><strong>Book your cab </strong></p>
 						<div class="row">
 							<div class="col-12">
-								<select class="browser-default custom-select mb-4">
+								<select class="browser-default custom-select mb-4" name="days">
 												<option value="" disabled="" selected="">Number of days :</option>
 												<option value="1">1</option>
 												<option value="2">2</option>
@@ -51,7 +51,6 @@
 											<div class="col-6">
 												<p>To:</p>
 											<input placeholder="to" name="to" type="text" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome" >
-
 									</div>
 								</div>
 								</div>
@@ -66,18 +65,16 @@
 											<input placeholder="&#xf073; Departing" name="checkin" type="date" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome" >
 										</div>
 											<div class="col-6">
-											<select class="browser-default custom-select mb-4">
-												<option value="" disabled="" selected="">PickUp time</option>
-												<option value="1">6:00 AM</option>
-												<option value="2">3:00 PM</option>
-												<option value="3">6:00 PM</option>
+											<select class="browser-default custom-select mb-4" name="time">
+												<option value="6:00 AM" disabled="" selected="">PickUp time</option>
+												<option value="6:00 Am">6:00 AM</option>
+												<option value="3:00 PM">3:00 PM</option>
+												<option value="6:00 Pm">6:00 PM</option>
 											</select>
 									</div>
 								</div>
 								</div>
 							</div>
-
-
 						</div>
 						<div class="col-sm-12">
 							<button type="submit" id="sendbutton" class="btn btn-primary btn-lg float-right mt-5">BOOK NOW</button>
