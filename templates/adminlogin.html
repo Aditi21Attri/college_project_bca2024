@@ -11,10 +11,9 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-<div class="about">
+<div class="about" style="background-color: rgba(192,192,192,0.21)">
    <div class="container">
       <div class="row">
          <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12">
@@ -28,7 +27,6 @@
                 <form method="post" novalidate>
                 <p class="searchText"><strong>Which data you want to access</strong></p>
                 <div class="row">
-
 			        <div class="col-sm-6">
 				        <select class="browser-default custom-select mb-4" id="select1" name="details_of">
                             <option value="" disabled="" selected="">Data of:</option>
@@ -41,12 +39,9 @@
                     </div>
                 </div>
                     <button type="submit" id="sendbutton" class="btn btn-primary btn-lg">Search</button> <a  href="/logout"><button type="button" id="btn btn-primary btn-lg" name="Log_ot_button" class="btn btn-outline-danger btn-lg" value="Log_ot">Log Out</button></a><br><br>
-
                 </form>
-
                 {% if details_given=='True' %}
                 {% if details_type=='hotels' %}
-
                <table class="table align-middle mb-0 bg-white">
                     <thead class="bg-light">
                         <tr>
@@ -56,16 +51,12 @@
                           <th>Location</th>
                             <th>Edit</th>
                             <th>Delete</th>
-
                         </tr>
                       </thead>
                    {% for details in details_wanted %}
-
                       <tbody>
                         <tr>
                           <td>
-
-
                     <div class="d-flex align-items-center">
                         {% set fname='uplodedfiles/'+ details.image_src %}
                       <img src="{{url_for('static',filename=fname)}}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
@@ -88,17 +79,12 @@
                                 <a href="/uploadhotels/{{details.srno}}"><div class="text-primary"><i class="fa fa-edit fa-3x"></i></div></a>
                             </td>
                             <td>
-                                <a href="/delete/{{details.srno}}"><button type="button"  class="btn btn-outline-danger  btn-lg">Delete</button></a>
+                                <a href="/delete_hotel/{{details.srno}}"><button type="button"  class="btn btn-outline-danger  btn-lg">Delete</button></a>
                             </td>
                         </tr>
-
-
-
-
                       {% endfor %}
                         <a href="/uploadhotels/0"><button type="button" class="btn btn-secondary  btn-lg">Upload new</button></a>
                         {% endif %}
-
                         {% if details_type=='users' %}
                      <table class="table align-middle mb-0 bg-white">
                     <thead class="bg-light">
@@ -107,26 +93,17 @@
                           <th>User Login/Email Id:</th>
                           <th>User SignIn Date</th>
                             <th>Delete</th>
-
                         </tr>
                       </thead>
                    {% for details in details_wanted %}
-
                       <tbody>
                         <tr>
                           <td>
-
-
                     <div class="d-flex align-items-center">
-                      <img
-                          src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                          alt=""
-                          style="width: 45px; height: 45px"
-                          class="rounded-circle"
-                          />
+                      <img src="{{url_for('static',filename='images/user_dash.jpg')}}" alt=""
+                          style="width: 45px; height: 45px" class="rounded-circle"/>
                       <div class="ms-3">
                         <p class="fw-bold mb-1">{{details.name}}</p>
-
                       </div>
                     </div>
                           </td>
@@ -136,19 +113,12 @@
                             <td>
                                 <p class="fw-bold mb-1">{{details.date}}</p>
                             </td>
-
                             <td>
-                                <button type="button" class="btn btn-outline-danger  btn-lg">Delete</button>
+                                <a href="/delete_user/{{details.srno}}"> <button type="button" class="btn btn-outline-danger  btn-lg">Delete</button></a>
                             </td>
                         </tr>
-
-
-
-
                           {% endfor %}
                         {% endif %}
-
-
                        {% if details_type=='cabs' %}
                      <table class="table align-middle mb-0 bg-white">
                     <thead class="bg-light">
@@ -160,22 +130,17 @@
                             <th>Description</th>
                             <th>Edit</th>
                             <th>Delete</th>
-
-
                         </tr>
                       </thead>
                    {% for details in details_wanted %}
                       <tbody>
                         <tr>
                           <td>
-
-
                     <div class="d-flex align-items-center">
                       {% set fname='uplodedfiles/'+ details.image_src %}
                       <img src="{{url_for('static',filename=fname)}}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
                       <div class="ms-3">
                         <p class="fw-bold mb-1">{{details.cab_name}}</p>
-
                       </div>
                     </div>
                           </td>
@@ -194,16 +159,13 @@
                             <td>
                                 <a href="/uploadcabs/{{details.srno}}"><div class="text-primary"><i class="fa fa-edit fa-3x"></i></div></a>
                             </td>
-
                             <td>
-                                <button type="button" class="btn btn-outline-danger  btn-lg">Delete</button>
+                                <a href="/delete_cab/{{details.srno}}"> <button type="button" class="btn btn-outline-danger  btn-lg">Delete</button></a>
                             </td>
                         </tr>
                           {% endfor %}
                         <a href="/uploadcabs/0"><button type="button" class="btn btn-secondary  btn-lg">Upload new</button></a>
                         {% endif %}
-
-
                         {% if details_type=='homestays' %}
                      <table class="table align-middle mb-0 bg-white">
                     <thead class="bg-light">
@@ -214,22 +176,17 @@
                             <th>Rooms</th>
                             <th>Edit</th>
                             <th>Delete</th>
-
-
                         </tr>
                       </thead>
                    {% for details in details_wanted %}
                       <tbody>
                         <tr>
                           <td>
-
-
                     <div class="d-flex align-items-center">
                       {% set fname='uplodedfiles/'+ details.image_src %}
                       <img src="{{url_for('static',filename=fname)}}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
                       <div class="ms-3">
                         <p class="fw-bold mb-1">{{details.homestayname}}</p>
-
                       </div>
                     </div>
                           </td>
@@ -247,14 +204,12 @@
                             </td>
 
                             <td>
-                                <button type="button" class="btn btn-outline-danger  btn-lg">Delete</button>
+                                <a href="/delete_homestay/{{details.srno}}"><button type="button" class="btn btn-outline-danger  btn-lg">Delete</button></a>
                             </td>
                         </tr>
-                          {% endfor %}
+                        {% endfor %}
                         <a href="/uploadhomestay/0"><button type="button" class="btn btn-secondary  btn-lg">Upload new</button></a>
                         {% endif %}
-
-
                         {% if details_type=='tourpackages' %}
                      <table class="table align-middle mb-0 bg-white">
                     <thead class="bg-light">
@@ -266,22 +221,17 @@
                             <th>Description</th>
                             <th>Edit</th>
                             <th>Delete</th>
-
-
                         </tr>
                       </thead>
                    {% for details in details_wanted %}
                       <tbody>
                         <tr>
                           <td>
-
-
                     <div class="d-flex align-items-center">
                       {% set fname='uplodedfiles/'+ details.image_src %}
                       <img src="{{url_for('static',filename=fname)}}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
                       <div class="ms-3">
                         <p class="fw-bold mb-1">{{details.tourname}}</p>
-
                       </div>
                     </div>
                           </td>
@@ -302,36 +252,21 @@
                             </td>
 
                             <td>
-                                <button type="button" class="btn btn-outline-danger  btn-lg">Delete</button>
+                                <a href="/delete_tour/{{details.srno}}"><button type="button" class="btn btn-outline-danger  btn-lg">Delete</button></a>
                             </td>
                         </tr>
-
-
-
-
-                          {% endfor %}
+                        {% endfor %}
                         <a href="/uploadtourpack/0"><button type="button" class="btn btn-secondary  btn-lg">Upload new</button></a>
                         {% endif %}
-
-                          {% endif %}
-
-
-
+                        {% endif %}
                       </tbody></table>
                       </tbody></table>
                       </tbody></table>
                       </tbody></table>
-                      </tbody></table>
+                      </tbody></table><br>
             </div>
          </div>
       </div>
    </div>
 </div>
-
-
-
-
-
-
-
 {% endblock %}
