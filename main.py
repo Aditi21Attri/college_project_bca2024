@@ -152,15 +152,24 @@ def tourpackbook(srno):
     tours = tourpackages.query.filter_by(srno=srno).first()
     return render_template("tourpackbook.html", tour=tours)
 
-@app.route("/register.html", methods={'GET', 'POST'})
+@app.route("/register", methods={'GET', 'POST'})
 def register():
     if request.method == "POST":
         name = request.form.get('name')
         email = request.form.get('email')
         password = request.form.get('password')
-        entry = signindetails(name=name, password=password, email=email, date=datetime.now(), type_of="users")
-        db.session.add(entry)
-        db.session.commit()
+        user_check=signindetails.query.filter_by(email=email)
+        is_false=False
+        for user in user_check:
+            if user.email==email:
+                return render_template("register.html",message="Email Already exist",invalid=True)
+            else:
+                is_false=True
+        if is_false:
+            entry = signindetails(name=name, password=password, email=email, date=datetime.now(), type_of="users")
+            db.session.add(entry)
+            db.session.commit()
+            return redirect("/login")
     return render_template("register.html")
 
 @app.route("/hotel", methods={'GET', 'POST'})

@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		<div class="col-6"><br><br><br>
-			<form method="post" novalidate>
+			<form method="post" >
 				<div class="card shadow mb-1 bg-white rounded">
 					<div class="card-body">
 						<p class="card-title text-center shadow mb-5 rounded">HOMESTAY BOOKING FORM</p><hr>
@@ -33,11 +33,11 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<p>Check In date</p>
-								<input placeholder="&#xf073; Departing" name="checkin" type="date" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome" >
+								<input placeholder="&#xf073; Departing" name="checkin" type="date" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome" required>
 							</div>
 							<div class="col-sm-12">
 								<p>How many days:</p>
-								<select class="browser-default custom-select mb-4" name="days">
+								<select class="browser-default custom-select mb-4" name="days" required>
 									<option value="" disabled="" selected="">No of Days:</option>
 									<option value="1">1</option>
 									<option value="2">2</option>

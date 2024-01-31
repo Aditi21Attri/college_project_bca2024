@@ -7,7 +7,7 @@
 <div class="container">
 	<div class="row">
       <div class="col-12">
-			<form method="post" novalidate>
+			<form method="post" >
               <div class="card shadow mb-1 bg-white rounded">
 					<div class="card-body">
 						<p class="card-title text-center shadow mb-5 rounded">HOTEL Upload/Edit Form</p><hr>
@@ -16,11 +16,11 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label class="form-label" for="form2Example1">Hotel Name</label>
-                                         <input type="text" id="form2Example1" placeholder="Enter hotel name here" name="hotel_name" value="{{hotel.hotelname}}" class="form-control" />
+                                         <input type="text" id="form2Example1" name="hotel_name" value="{{hotel.hotelname}}" class="form-control" required/>
 
                                         <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example2">Location</label>
-                                        <input type="text" id="form2Example2" name="location" value="{{hotel.area}}" class="form-control" />
+                                        <input type="text" id="form2Example2" name="location" value="{{hotel.area}}" class="form-control" required/>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -35,19 +35,19 @@
                           <div class="col-6">
                             <div class="form-outline mb-4">
                          <label class="form-label" for="form2Example3">Per day stay charges</label>
-                        <input type="tel" id="form2Example3" name="price" value="{{hotel.price}}" class="form-control" />
+                        <input type="tel" id="form2Example3" name="price" value="{{hotel.price}}" class="form-control" required/>
                       </div>
                           </div>
                           <div class="col-6">
                             <div class="form-outline mb-4">
                          <label class="form-label" for="form2Example3">Image name</label>
-                        <input type="text" id="form2Example4" name="file_path" value="{{hotel.image_src}}" class="form-control" />
+                        <input type="text" id="form2Example4" name="file_path" value="{{hotel.image_src}}" class="form-control" required/>
                       </div>
                           </div>
                         </div>
                       </div>
                       <div class="form-outline mb-4">
-                            <select class="browser-default custom-select" name="h_type" id="select1" for="form2Example4">
+                            <select class="browser-default custom-select" name="h_type" id="select1" for="form2Example4" required>
                                 <option value="{{hotel.type}}"  selected="">Room Type</option>
                                 <option value="Premium">Premium</option>
                                 <option value="Big">Big</option>
@@ -58,7 +58,7 @@
                         <div class="row">
                           <div class="col-lg-7 col-sm-12">
                             <div class="form-outline mb-4">
-                        <textarea rows="5" cols="100" name="description">{{hotel.description}}</textarea>
+                        <textarea rows="5" cols="100" name="description" required>{{hotel.description}}</textarea>
                       </div>
                           </div>
                           <div class="col-lg-5 col-sm-12">

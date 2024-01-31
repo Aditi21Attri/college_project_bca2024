@@ -7,7 +7,7 @@
 <div class="container">
 	<div class="row">
       <div class="col-12">
-			<form method="post" novalidate>
+			<form method="post" >
               <div class="card shadow mb-1 bg-white rounded">
 					<div class="card-body">
 						<p class="card-title text-center shadow mb-5 rounded">TOURPACKAGES Upload/Edit Form</p><hr>
@@ -16,11 +16,11 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label class="form-label" >Tour Name:</label>
-                                         <input type="text" placeholder="Enter cab name here" name="tour_name" value="{{tour.tourname}}" class="form-control" />
+                                         <input type="text" name="tour_name" value="{{tour.tourname}}" class="form-control" required />
 
                                         <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example2">Area:</label>
-                                        <input type="text" id="form2Example2" name="area" value="{{tour.area}}" class="form-control" />
+                                        <input type="text" id="form2Example2" name="area" value="{{tour.area}}" class="form-control" required />
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -35,20 +35,20 @@
                           <div class="col-6">
                             <div class="form-outline mb-4">
                          <label class="form-label" for="form2Example3">Per person charges</label>
-                        <input type="tel" id="form2Example3" name="price" value="{{tour.price}}/-" class="form-control" />
+                        <input type="tel" id="form2Example3" name="price" value="{{tour.price}}/-" class="form-control" required />
                       </div>
                           </div>
                           <div class="col-6">
                             <div class="form-outline mb-4">
                          <label class="form-label" >Image name</label>
-                        <input type="text"  name="file_path" value="{{tour.image_src}}" class="form-control" />
+                        <input type="text"  name="file_path" value="{{tour.image_src}}" class="form-control" required/>
                       </div>
                           </div>
                         </div>
                       </div>
                       <div class="form-outline mb-4">
                             <label class="form-label">Days</label>
-                          <select class="browser-default custom-select" name="days" id="select1" >
+                          <select class="browser-default custom-select" name="days" id="select1" required>
                                 <option value="{{tour.days}}"  selected="">No of tour days: </option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -61,7 +61,7 @@
                           <div class="col-lg-7 col-sm-12">
                             <div class="form-outline mb-4">
                                 <label class="form-label">Description</label>
-                                <textarea rows="5" cols="100" name="description">{{tour.description}}</textarea>
+                                <textarea rows="5" cols="100" name="description" required >{{tour.description}}</textarea>
                             </div>
                           </div>
                           <div class="col-lg-5 col-sm-12">
