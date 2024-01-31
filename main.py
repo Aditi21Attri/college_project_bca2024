@@ -74,8 +74,8 @@ class user_bookings(db.Model):
 
 @app.route("/hotelbooking/<string:srno>",methods=["GET","POST"])
 def hotelbooking(srno):
-    if "users" in session:
-        if request.method=="POST":
+    if request.method == "POST":
+        if "users" in session:
             no_rooms=request.form.get("rooms")
             check_in=request.form.get("checkin")
             days=request.form.get("days")
@@ -86,13 +86,15 @@ def hotelbooking(srno):
             booking=user_bookings(e_name=session['users'],service_name=hotel_name,rooms=no_rooms,check_in=check_in,days=days,total=total,type_of="hotel",from_des=from_des)
             db.session.add(booking)
             db.session.commit()
+        else:
+            return redirect("/login")
     hotel = hotelsdetails.query.filter_by(srno=srno).first()
     return render_template("hotelbooking.html", hotel=hotel)
 
 @app.route("/homestaybooking/<string:srno>",methods=["GET","POST"])
 def homestaybooking(srno):
-    if "users" in session:
-        if request.method == "POST":
+    if request.method == "POST":
+        if "users" in session:
             check_in = request.form.get("checkin")
             days = request.form.get("days")
             homestay = homestayvillas.query.filter_by(srno=srno).first()
@@ -103,13 +105,15 @@ def homestaybooking(srno):
                                     days=days, total=total, type_of="homestay",from_des=from_des,rooms=homestay.roomsoffered)
             db.session.add(booking)
             db.session.commit()
+        else:
+            return redirect("/login")
     homestay = homestayvillas.query.filter_by(srno=srno).first()
     return render_template("homestaybooking.html", homestay=homestay)
 
 @app.route("/cabbook/<string:srno>",methods=["GET","POST"])
 def cabbook(srno):
-    if "users" in session:
-        if request.method == "POST":
+    if request.method == "POST":
+        if "users" in session:
             days = request.form.get("days")
             print(days)
             from_des = request.form.get("from")
@@ -122,25 +126,29 @@ def cabbook(srno):
                                     days=days, type_of="cabs",rooms=cabs.seats_available)
             db.session.add(booking)
             db.session.commit()
+        else:
+            return redirect("/login")
     cabs = tourcabs.query.filter_by(srno=srno).first()
     return render_template("cabbook.html", cab=cabs)
 
 @app.route("/tourpackbook/<string:srno>",methods=["GET","POST"])
 def tourpackbook(srno):
     if request.method == "POST":
-        people = request.form.get("people")
-        check_in = request.form.get("checkin")
-        time = request.form.get("time")
-        tours = tourpackages.query.filter_by(srno=srno).first()
-        days=tours.days
-        tour_name = tours.tourname
-        from_des=tours.area
-        total=int(tours.price)*int(people)
-        booking = user_bookings(e_name=session['users'], service_name=tour_name, check_in=check_in, time=time,
-                                people=people, type_of="tourpack",total=total,days=days,from_des=from_des)
-        db.session.add(booking)
-        db.session.commit()
-
+        if "users" in session:
+            people = request.form.get("people")
+            check_in = request.form.get("checkin")
+            time = request.form.get("time")
+            tours = tourpackages.query.filter_by(srno=srno).first()
+            days=tours.days
+            tour_name = tours.tourname
+            from_des=tours.area
+            total=int(tours.price)*int(people)
+            booking = user_bookings(e_name=session['users'], service_name=tour_name, check_in=check_in, time=time,
+                                    people=people, type_of="tourpack",total=total,days=days,from_des=from_des)
+            db.session.add(booking)
+            db.session.commit()
+        else:
+            return redirect("/login")
     tours = tourpackages.query.filter_by(srno=srno).first()
     return render_template("tourpackbook.html", tour=tours)
 
@@ -221,16 +229,14 @@ def index():
 def about():
     return render_template("about.html")
 
-@app.route("/blog")
-def blog():
-    return render_template("blog.html")
-
 @app.route("/services")
 def product():
     hotels = hotelsdetails.query.filter()[0:3]
     homestays = homestayvillas.query.filter()[0:3]
+    tours=tourpackages.query.filter()[0:3]
+    cab_s=tourcabs.query.filter()[0:3]
     print(hotels)
-    return render_template("services.html", hotels=hotels, homestays=homestays)
+    return render_template("services.html", hotels=hotels, homestays=homestays,tours=tours,cabs=cab_s)
 
 @app.route("/contact")
 def contact():

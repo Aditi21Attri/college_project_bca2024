@@ -59,6 +59,20 @@
 	<div class="Lastestnews blog">
         <div class="container">
             <div class="row">
+                {% for tour in tours %}
+                {% set fname='uplodedfiles/'+ tour.image_src %}
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
+                    <div class="news-box">
+                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" alt="img" /></figure>
+                        <h3 class="text-dark font-weight-bold">{{tour.tourname[0:20]}}...</h3><hr style=" border-top: 2px dashed red;">
+                        <span class="text-info"> {{tour.area}}</span><span class="text-secondary">Rs.{{tour.price}}/-per</span>
+                        <p>{{tour.description[0:100]}}.....
+                        <a href="/tourpackbook/{{tour.srno}}"><button type="button" class="btn-lg btn-outline-primary font-weight-bold float-right">Book Now</button></a></p><br>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row">
                 {% for hotel in hotels %}
                 {% set fname='uplodedfiles/'+ hotel.image_src %}
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
@@ -68,6 +82,20 @@
                             <span class="text-info"> {{hotel.area}}</span><span>{{hotel.type}}</span>
                             <p>{{hotel.description[0:100]}}.......
                                 <a href="/hotelbooking/{{hotel.srno}}"><button type="button" class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now</button></a></p><br>
+					    </div>
+				    </div>
+	            {% endfor %}
+	        </div>
+            <div class="row">
+                {% for cab in cabs %}
+                {% set fname='uplodedfiles/'+ cab.image_src %}
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
+                        <div class="news-box">
+                            <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" /></figure>
+                            <h3 class="text-dark font-weight-bold">{{cab.cab_name}}</h3><hr style=" border-top: 2px dashed red;">
+                            <span class="text-info"> {{cab.cab_type}}</span><span>{{cab.price}}/-Km</span>
+                            <p>{{cab.cab_description[0:100]}}.......
+                                <a href="/cabbook/{{cab.srno}}"><button type="button" class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now</button></a></p><br>
 					    </div>
 				    </div>
 	            {% endfor %}

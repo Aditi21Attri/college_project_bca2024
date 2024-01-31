@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block head %}
-<div class="title" xmlns="http://www.w3.org/1999/html">
+
        <div class="brand_color">
         <div class="container">
             <div class="row">
@@ -12,7 +12,8 @@
             </div>
         </div>
     </div>
-<div class="about" style="background-color: rgba(192,192,192,0.89)">
+<div class="title">
+<div class="about" style="background-color: rgba(245,245,245,0.89)">
    <div class="container">
       <div class="row">
          <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12">
@@ -26,11 +27,7 @@
                 <form method="post" novalidate>
                 <p class="searchText"><strong class="text-primary font-weight-bold">Your UserName/Email  :{{user_data.email}}</strong> <br>
                     <a href="#"> <button type="submit" id="sendbutton" class="btn btn-primary btn-lg">See All Bookings  </button></a><a  href="/logout_user"><button type="button" id="btn btn-primary btn-lg" name="Log_ot_button" class="btn btn-outline-danger btn-lg" value="Log_ot">Log Out</button></a><br><br></p>
-                <div class="row">
-                    <div class="col-6">
-                        <p>You can share your travel journey with us :</p></div>
-                    <div class="col-6"> <button class="btn btn-success btn-lg">Post Blog</button></div>
-                </div>
+
                 </form>
                 <table class="table align-middle mb-0 bg-white" >
                     <thead class="bg-secondary text-dark">

@@ -345,109 +345,6 @@ a.readmore_bt {
 }
 
 
-/*----------------------------
-    preloader area
-----------------------------*/
-
-.loader_bg {
-	position: fixed;
-	z-index: 9999999;
-	background: #fff;
-	width: 100%;
-	height: 100%;
-}
-
-.loader {
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	left: 0;
-	top: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.loader img {
-	width: 280px;
-}
-
-
-/*----------------------------
-    scroll to top area
-----------------------------*/
-
-.scrollup {
-	float: right;
-	position: absolute;
-	color: #fff;
-	right: 20px;
-	padding: 0px 5px;
-	text-transform: uppercase;
-	font-weight: 600;
-	background: #38c8a8;
-	position: fixed;
-	bottom: 20px;
-	z-index: 99;
-	text-align: center;
-	color: #fff;
-	cursor: pointer;
-	border-radius: 0px;
-	opacity: 0;
-	backface-visibility: hidden;
-	-webkit-backface-visibility: hidden;
-	transform: scale(1);
-	-moz-transform: scale(1);
-	-o-transform: scale(1);
-	-webkit-transform: scale(1);
-	transition: .2s all ease;
-	-moz-transition: .2s all ease;
-	-o-transition: .2s all ease;
-	-webkit-transition: .2s all ease;
-	width: 50px;
-	height: 50px;
-	border-radius: 100%;
-	line-height: 48px;
-	font-size: 16px;
-}
-
-.scrollup.b-show_scrollBut {
-	opacity: 1;
-	visibility: visible;
-}
-
-.top_awro {
-	background: #ee4a79 none repeat scroll 0 0;
-	cursor: pointer;
-	padding: 6px 8px;
-	position: fixed;
-	bottom: 59px;
-	right: 20px;
-	display: none;
-	height: 45px;
-	width: 45px;
-	border-radius: 50%;
-	text-align: center;
-	line-height: 30px;
-	transition: all 0.5s ease;
-}
-
-.sale_pro {
-	background: #f25252 !important;
-}
-
-.margin_top_50 {
-	margin-top: 50px;
-}
-
-.margin_bottom_30_all {
-	margin-bottom: 30px;
-}
-
-.text_align_center {
-	text-align: center;
-}
-
 
 /*---------------------------------------------------------------------
     header area
@@ -1645,7 +1542,7 @@ input[type="radio"] .styled:checked+label::after {
 
 
 /*---------------------------------------------------------------------
-    layout new css 
+    layout new css
 ---------------------------------------------------------------------*/
 
 
@@ -1725,7 +1622,6 @@ font-size: 18px;
 .banner-main .carousel-caption p {
 	color: #050000;
     font-weight: 500;
-    	
     line-height: 23px;
 	 }
 .banner-main .carousel-caption a {
@@ -1748,7 +1644,7 @@ margin-top: 20px;
 /** whyschose section **/
 
 .whyschose {
-	background: #fff;
+	background: rgba(245, 245, 245, 0.83);
     padding-top: 85px;
 }
 
@@ -1771,19 +1667,19 @@ margin-top: 20px;
 }
 .title h2:after {
 	position: relative;
-content: '';
-top: 100%;
-width: 110px;
-height: 10px;
-display: block;
-margin: 0 auto;
-background: #000;
+	content: '';
+	top: 100%;
+	width: 500px;
+	height: 3px;
+	display: block;
+	margin: 0 auto;
+	background: rgba(58, 58, 141, 0.93);
 }
 
 .title span{
 color:#070500;
 font-size: 28px;
-line-height: 28px;
+line-height: 10px;
 margin-top: 20px;
 }
 .black {
@@ -1798,8 +1694,8 @@ margin-top: 20px;
 
 .choose_bg .white_bg  {
 	background: #fff;
-	padding: 40px 20px;
-	box-shadow: #ddd 0px 0px 10px 3px;
+	padding: 20px 20px;
+	box-shadow: #ddd 0px 0px 5px 3px;
 	margin-bottom: 5px;
 }
 .choose_bg .white_bg .for_box {
@@ -1821,22 +1717,7 @@ margin-top: 20px;
 	line-height: 28px;
 }
 
-.read-more  {
-	width: 190px;
-margin: 0 auto;
-background: #fff;
-display: block;
-border: #f9be20 solid 2px;
-text-align: center;
-padding: 10px 0px;
-color: #0a0401 !important;
-font-size: 20px;
-margin-top: 40px;
-}
-.read-more:hover {
-	background: #f9be20;
-	color: #0a0401;
-}
+
 
 /** end whyschose section **/
 
@@ -1996,7 +1877,7 @@ margin-top: 20px;
 .img_bg i {float: left; display: flex; flex-wrap: wrap;}
 .img_bg i img {width: 149px; height: 149px;}
 .img_bg  span {color: #000; font-size: 28px; line-height: 28px; padding-left: 40px; padding-top: 41px;}
-.img_bg .date {font-weight: normal; font-size: 16px; } 
+.img_bg .date {font-weight: normal; font-size: 16px; }
 
 .carousel-indicators li {
     width: 25px;
@@ -2138,7 +2019,7 @@ ul.lik li a:hover {
 }
 
 .copyright {
-	background-color: #44318d;
+	background-color: rgba(131, 131, 239, 0.74);
 	padding: 20px 0px;
 	margin-top: 70px;
 }
