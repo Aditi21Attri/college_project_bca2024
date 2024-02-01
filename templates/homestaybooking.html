@@ -1,57 +1,66 @@
 {% extends "layout.html" %}
 {% block head %}
 <head>
-	<link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
 </head>
-<a href="/homestay"> <button class="btn-lg btn-outline-primary  pl-5" ><i class="fa fa-arrow-circle-o-left">Go Back</i></button></a>
+<a href="/homestay">
+    <button class="btn-lg btn-outline-primary  pl-5"><i class="fa fa-arrow-circle-o-left">Go Back</i></button>
+</a>
 <div class="container" style="background-color: rgba(192,192,192,0.89)">
-	<div class="row">
-		<div class="col-6">
-			<br><br>
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						{% set fname='uplodedfiles/'+ homestay.image_src %}
-						<img src="{{url_for('static',filename=fname)}}" style="width: 500px; height: 250px" class="rounded-bottom" alt="img" /><br>
-					<span class="text-primary font-weight-bold text-lg-center" style="font-size: 20px">HOMESTAY :{{homestay.homestayname}}</span><br>
-					<span class="text-darks font-weight-bold text-danger"> {{homestay.area}}</span><br><span class="text-danger font-weight-bold">Rooms : {{homestay.roomsoffered}}</span><br>
-					<span class="text-darks font-weight-bold text-danger"> {{homestay.price}}/-per day</span><br>
-					<br>
-					<p class="font-weight-normal text-dark">{{homestay.description}}</p>
-					<br>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-6"><br><br><br>
-			<form method="post" >
-				<div class="card shadow mb-1 bg-white rounded">
-					<div class="card-body">
-						<p class="card-title text-center shadow mb-5 rounded">HOMESTAY BOOKING FORM</p><hr>
-						<p class="searchText"><strong>Book your hotel </strong></p><br>
+    <div class="row">
+        <div class="col-6">
+            <br><br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        {% set fname='uplodedfiles/'+ homestay.image_src %}
+                        <img src="{{url_for('static',filename=fname)}}" style="width: 500px; height: 250px"
+                             class="rounded-bottom" alt="img"/><br>
+                        <span class="text-primary font-weight-bold text-lg-center" style="font-size: 20px">HOMESTAY :{{homestay.homestayname}}</span><br>
+                        <span class="text-darks font-weight-bold text-danger"> {{homestay.area}}</span><br><span
+                            class="text-danger font-weight-bold">Rooms : {{homestay.roomsoffered}}</span><br>
+                        <span class="text-darks font-weight-bold text-danger"> {{homestay.price}}/-per day</span><br>
+                        <br>
+                        <p class="font-weight-normal text-dark">{{homestay.description}}</p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6"><br><br><br>
+            <form method="post">
+                <div class="card shadow mb-1 bg-white rounded">
+                    <div class="card-body">
+                        <p class="card-title text-center shadow mb-5 rounded">HOMESTAY BOOKING FORM</p>
+                        <hr>
+                        <p class="searchText"><strong>Book your hotel </strong></p><br>
 
-						<div class="row">
-							<div class="col-sm-12">
-								<p>Check In date</p>
-								<input placeholder="&#xf073; Departing" name="checkin" type="date" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome" required>
-							</div>
-							<div class="col-sm-12">
-								<p>How many days:</p>
-								<select class="browser-default custom-select mb-4" name="days" required>
-									<option value="" disabled="" selected="">No of Days:</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-								</select>
-						</div>
-						<div class="col-sm-12">
-							<button type="submit" id="sendbutton" class="btn btn-primary btn-lg float-right mt-5">BOOK NOW</button>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p>Check In date</p>
+                                <input placeholder="&#xf073; Departing" name="checkin" type="date"
+                                       class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome"
+                                       required>
+                            </div>
+                            <div class="col-sm-12">
+                                <p>How many days:</p>
+                                <select class="browser-default custom-select mb-4" name="days" required>
+                                    <option value="" disabled="" selected="">No of Days:</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12">
+                                <button type="submit" id="sendbutton" class="btn btn-primary btn-lg float-right mt-5">
+                                    BOOK NOW
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
 </div><br>
 {% endblock %}

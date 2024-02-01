@@ -1,51 +1,58 @@
-
 {% extends "layout.html" %}
 {% block head %}
 <head>
-	<link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
 </head>
 <form method="post" novalidate>
-<div class="card shadow mb-5 bg-white rounded">
-	<div class="card-body">
-		<p class="card-title text-center shadow mb-5 rounded"><i class="fa fa-home fa-2x"></i></i>Homestay and Villas<i class="fa fa-home fa-2x" aria-hidden="true"></i></p>
-    <hr>
-		<p class="searchText"><strong>Apply filters:</strong></p>
-		<div class="row">
-			<div class="col-lg-8 col-sm-6">
-						<select class="browser-default custom-select mb-4" id="select1" name="destination">
-							<option value="none" selected="">Destination</option>
-							<option value="Kasauli">Kasauli</option>
-							<option value="Shimla">Shimla</option>
-							<option value="Chandighar">Chandighar</option>
-						</select>
-					</div>
-					<div class=" col-lg-4 col-sm-6" style="margin-bottom: 30px; margin-inside: 10px ">
-						<button type="submit" id="sendbutton" class="btn btn-primary btn-lg float-right mt-5">Find Homestays</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="card shadow mb-5 bg-white rounded">
+        <div class="card-body">
+            <p class="card-title text-center shadow mb-5 rounded"><i class="fa fa-home fa-2x"></i></i>Homestay and
+                Villas<i class="fa fa-home fa-2x" aria-hidden="true"></i></p><hr>
+            <p class="searchText"><strong>Apply filters:</strong></p>
+            <div class="row">
+                <div class="col-lg-8 col-sm-6">
+                    <select class="browser-default custom-select mb-4" id="select1" name="destination">
+                        <option value="none" selected="">Destination</option>
+                        <option value="Kasauli">Kasauli</option>
+                        <option value="Shimla">Shimla</option>
+                        <option value="Chandighar">Chandighar</option>
+                    </select>
+                </div>
+                <div class=" col-lg-4 col-sm-6" style="margin-bottom: 30px; margin-inside: 10px ">
+                    <button type="submit" id="sendbutton" class="btn btn-primary btn-lg float-right mt-5">Find
+                        Homestays
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </form>
 <div class="title">
-	<div class="Lastestnews blog">
+    <div class="Lastestnews blog">
         <div class="container">
-	<div class="row">
-     {% for home in homestays %}
-		{% set fname='uplodedfiles/'+ home.image_src %}
+            <div class="row">
+                {% for home in homestays %}
+                {% set fname='uplodedfiles/'+ home.image_src %}
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
                     <div class="news-box">
-                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" alt="img" /></figure>
-                        <h3 class="text-dark font-weight-bold">{{home.homestayname}}</h3><hr style=" border-top: 2px dashed red;">
-                        <span class="text-info"> {{home.area}}</span><span class="text-secondary">Rs.{{home.price}}/-</span>
-                        <p>{{home.description[0:100]}}.... <a href="/homestaybooking/{{home.srno}}"><button type="button"  name="bookbutton" class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now</button></a></p><br>
+                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px"
+                                     alt="img"/></figure>
+                        <h3 class="text-dark font-weight-bold">{{home.homestayname}}</h3>
+                        <hr style=" border-top: 2px dashed red;">
+                        <span class="text-info"> {{home.area}}</span><span
+                            class="text-secondary">Rs.{{home.price}}/-</span>
+                        <p>{{home.description[0:100]}}.... <a href="/homestaybooking/{{home.srno}}">
+                            <button type="button" name="bookbutton"
+                                    class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now
+                            </button>
+                        </a></p>
+                        <br>
                     </div>
-				</div>
-
-	 {% endfor %}
-	</div>
-				</div></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
-
-
 {% endblock %}

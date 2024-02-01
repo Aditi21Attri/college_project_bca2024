@@ -1,6 +1,5 @@
 {
-  "parameters":
-  {
+  "parameters": {
     "local_server": "True",
     "local_url": "mysql+mysqlconnector://root :@localhost/tourandtravel",
     "gmail_user": "attriaditi2@gmail.com",

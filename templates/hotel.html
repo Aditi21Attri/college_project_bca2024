@@ -1,56 +1,67 @@
 {% extends "layout.html" %}
 {% block head %}
 <head>
-	<link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
 </head>
 <form method="post" novalidate>
-<div class="card shadow mb-5 bg-white rounded">
-	<div class="card-body">
-		<p class="card-title text-center shadow mb-5 rounded font-weight-bold"><i class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-3x"></i><i class="fa fa-building fa-2x"></i>HOTEL<i class="fa fa-building-o fa-2x" aria-hidden="true"></i><i class="fa fa-building fa-3x" aria-hidden="true"></i><i class="fa fa-building-o fa-2x" aria-hidden="true"></i></p>
-    <hr>
-		<p class="searchText"><strong>Apply filters:</strong></p>
-		<div class="row">
-			<div class="col-lg-5 col-sm-6">
-				<select class="browser-default custom-select mb-4" id="select1" name="destination">
-					<option value="none" selected="">Destination</option>
-					<option value="Delhi">Delhi</option>
-					<option value="Mumbai">Mumbai</option>
-					<option value="Solan">Solan</option>
-					<option value="Kasauli">Kasauli</option>
-    			</select>
-			</div>
-			<div class="col-lg-5 col-sm-6">
-				<select class="browser-default custom-select mb-4" id="select3" name="room_type">
-					<option value="none" selected="">Room type</option>
-					<option value="premium">Premium</option>
-					<option value="big">Big</option>
-					<option value="ordinary">Ordinary</option>
-				</select>
-			</div>
-			<div class="col-lg-2 col-sm-12">
-				<button type="submit" id="sendbutton" class="btn btn-primary float-right mt-5">Find hotel</button>
-			</div>
-		</div>
-	</div>
-</div>
+    <div class="card shadow mb-5 bg-white rounded">
+        <div class="card-body">
+            <p class="card-title text-center shadow mb-5 rounded font-weight-bold"><i
+                    class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-3x"></i><i
+                    class="fa fa-building fa-2x"></i>HOTEL<i class="fa fa-building-o fa-2x" aria-hidden="true"></i><i
+                    class="fa fa-building fa-3x" aria-hidden="true"></i><i class="fa fa-building-o fa-2x"
+                                                                           aria-hidden="true"></i></p><hr>
+            <p class="searchText"><strong>Apply filters:</strong></p>
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <select class="browser-default custom-select mb-4" id="select1" name="destination">
+                        <option value="none" selected="">Destination</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Solan">Solan</option>
+                        <option value="Kasauli">Kasauli</option>
+                    </select>
+                </div>
+                <div class="col-lg-5 col-sm-6">
+                    <select class="browser-default custom-select mb-4" id="select3" name="room_type">
+                        <option value="none" selected="">Room type</option>
+                        <option value="premium">Premium</option>
+                        <option value="big">Big</option>
+                        <option value="ordinary">Ordinary</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <button type="submit" id="sendbutton" class="btn btn-primary float-right mt-5">Find hotel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 <div class="title">
-<div class="Lastestnews blog">
-	<div class="container">
-		<div class="row">
-     		{% for hotel in hotels %}
-			{% set fname='uplodedfiles/'+ hotel.image_src %}
-			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
-				<div class="news-box">
-					<figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" alt="img" /></figure>
-					<h3 class="text-dark font-weight-bold">{{hotel.hotelname}}</h3><hr style=" border-top: 2px dashed red;">
-					<span class="text-info"> {{hotel.area}}</span><span class="text-secondary">Rs.{{hotel.price}}/-</span>
-					<p>{{hotel.description[0:100]}}....<a href="/hotelbooking/{{hotel.srno}}"><button type="button"  name="bookbutton" class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now</button></a></p><br>
-				</div>
-			</div>
-	 {% endfor %}
-		</div>
-	</div>
-</div>
+    <div class="Lastestnews blog">
+        <div class="container">
+            <div class="row">
+                {% for hotel in hotels %}
+                {% set fname='uplodedfiles/'+ hotel.image_src %}
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
+                    <div class="news-box">
+                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px"
+                                     alt="img"/></figure>
+                        <h3 class="text-dark font-weight-bold">{{hotel.hotelname}}</h3>
+                        <hr style=" border-top: 2px dashed red;">
+                        <span class="text-info"> {{hotel.area}}</span><span
+                            class="text-secondary">Rs.{{hotel.price}}/-</span>
+                        <p>{{hotel.description[0:100]}}....<a href="/hotelbooking/{{hotel.srno}}">
+                            <button type="button" name="bookbutton"
+                                    class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now
+                            </button>
+                        </a></p>
+                        <br>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

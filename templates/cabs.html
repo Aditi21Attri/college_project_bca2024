@@ -1,25 +1,32 @@
 {% extends "layout.html" %}
 {% block head %}
 <head>
-	<link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
 </head>
 <div class="title">
-<div class="Lastestnews blog">
-	<div class="container">
-		<div class="row">
-     		{% for cab in cabes %}
-			{% set fname='uplodedfiles/'+ cab.image_src %}
-			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
-				<div class="news-box">
-					<figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" alt="img" /></figure>
-					<h3 class="text-dark font-weight-bold">{{cab.cab_name}}</h3><hr style=" border-top: 2px dashed red;">
-					<span class="text-info"> {{cab.cab_type}}</span><span class="text-secondary">Rs.{{cab.price}}/-Km</span>
-					<p>{{cab.cab_description[0:100]}}....<a href="/cabbook/{{cab.srno}}" ><button type="button"  name="bookbutton" class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now</button></a></p><br>
-				</div>
-			</div>
-	 {% endfor %}
-		</div>
-	</div>
-</div>
+    <div class="Lastestnews blog">
+        <div class="container">
+            <div class="row">
+                {% for cab in cabes %}
+                {% set fname='uplodedfiles/'+ cab.image_src %}
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
+                    <div class="news-box">
+                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px"
+                                     alt="img"/></figure>
+                        <h3 class="text-dark font-weight-bold">{{cab.cab_name}}</h3>
+                        <hr style=" border-top: 2px dashed red;">
+                        <span class="text-info"> {{cab.cab_type}}</span><span class="text-secondary">Rs.{{cab.price}}/-Km</span>
+                        <p>{{cab.cab_description[0:100]}}....<a href="/cabbook/{{cab.srno}}">
+                            <button type="button" name="bookbutton"
+                                    class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now
+                            </button>
+                        </a></p>
+                        <br>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

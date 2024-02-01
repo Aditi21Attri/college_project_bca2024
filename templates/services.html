@@ -1,73 +1,84 @@
 {% extends "layout.html" %}
 {% block head %}
-       <div class="brand_color">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="titlepage">
-                        <h2>our Services</h2>
-                    </div>
+<div class="brand_color">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2>our Services</h2>
                 </div>
             </div>
         </div>
     </div>
-<hr>
-      <div class="product-bg">
-         <div class="product-bg-white">
-         <div class="container">
+</div><hr>
+<div class="product-bg">
+    <div class="product-bg-white">
+        <div class="container">
             <div class="row">
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <a href="hotel"><div class="product-box">
-                     <i><img src="{{url_for('static',filename='uplodedfiles/mainhotel.jpg')}}"/></i>
-                     <h3>Hotel</h3>
-                         <i class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-4x"></i><i class="fa fa-building fa-2x"></i>
-
-                  </div>
-                </a>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <a href="homestay"><div class="product-box">
-                     <i><img src="{{url_for('static',filename='uplodedfiles/homestaymain.jpg')}}"/></i>
-                     <h3>HomeStays & Villas</h3>
-                      <h4><i class="fa fa-home fa-3x"></i><i class="fa fa-home fa-2x"></i></h4>
-
-                  </div></a>
-               </div>
-
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <a href="cabs"> <div class="product-box">
-                     <i><img src="{{url_for('static',filename='uplodedfiles/cab.jpg')}}"/></i>
-                     <h3>Cab</h3>
-                     <i class="fa fa-car fa-4x"></i>
-                  </div></a>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <a href="tour"> <div class="product-box">
-                     <i><img src="{{url_for('static',filename='uplodedfiles/tourindia.jpg')}}"/></i>
-                     <h3>Tour packages</h3>
-                     <i class="fa fa-road fa-4x"></i>
-                  </div></a>
-               </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <a href="hotel">
+                        <div class="product-box">
+                            <i><img src="{{url_for('static',filename='uplodedfiles/mainhotel.jpg')}}"/></i>
+                            <h3>Hotel</h3>
+                            <i class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-4x"></i><i
+                                class="fa fa-building fa-2x"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <a href="homestay">
+                        <div class="product-box">
+                            <i><img src="{{url_for('static',filename='uplodedfiles/homestaymain.jpg')}}"/></i>
+                            <h3>HomeStays & Villas</h3>
+                            <h4><i class="fa fa-home fa-3x"></i><i class="fa fa-home fa-2x"></i></h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <a href="cabs">
+                        <div class="product-box">
+                            <i><img src="{{url_for('static',filename='uplodedfiles/cab.jpg')}}"/></i>
+                            <h3>Cab</h3>
+                            <i class="fa fa-car fa-4x"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <a href="tour">
+                        <div class="product-box">
+                            <i><img src="{{url_for('static',filename='uplodedfiles/tourindia.jpg')}}"/></i>
+                            <h3>Tour packages</h3>
+                            <i class="fa fa-road fa-4x"></i>
+                        </div>
+                    </a>
+                </div>
             </div>
-         </div>
-         </div>
-      </div>
+        </div>
+    </div>
+</div>
 <hr>
 <div class="title">
     <h2>OUR<strong class="black"> POPULAR CHOISES</strong></h2>
-
-	<div class="Lastestnews blog">
+    <div class="Lastestnews blog">
         <div class="container">
             <div class="row">
                 {% for tour in tours %}
                 {% set fname='uplodedfiles/'+ tour.image_src %}
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
                     <div class="news-box">
-                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" alt="img" /></figure>
-                        <h3 class="text-dark font-weight-bold">{{tour.tourname[0:20]}}...</h3><hr style=" border-top: 2px dashed red;">
-                        <span class="text-info"> {{tour.area}}</span><span class="text-secondary">Rs.{{tour.price}}/-per</span>
+                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px"
+                                     alt="img"/></figure>
+                        <h3 class="text-dark font-weight-bold">{{tour.tourname[0:20]}}...</h3>
+                        <hr style=" border-top: 2px dashed red;">
+                        <span class="text-info"> {{tour.area}}</span><span
+                            class="text-secondary">Rs.{{tour.price}}/-per</span>
                         <p>{{tour.description[0:100]}}.....
-                        <a href="/tourpackbook/{{tour.srno}}"><button type="button" class="btn-lg btn-outline-primary font-weight-bold float-right">Book Now</button></a></p><br>
+                            <a href="/tourpackbook/{{tour.srno}}">
+                                <button type="button" class="btn-lg btn-outline-primary font-weight-bold float-right">
+                                    Book Now
+                                </button>
+                            </a></p>
+                        <br>
                     </div>
                 </div>
                 {% endfor %}
@@ -75,49 +86,66 @@
             <div class="row">
                 {% for hotel in hotels %}
                 {% set fname='uplodedfiles/'+ hotel.image_src %}
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
-                        <div class="news-box">
-                            <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" /></figure>
-                            <h3 class="text-dark font-weight-bold">{{hotel.hotelname}}</h3><hr style=" border-top: 2px dashed red;">
-                            <span class="text-info"> {{hotel.area}}</span><span>{{hotel.type}}</span>
-                            <p>{{hotel.description[0:100]}}.......
-                                <a href="/hotelbooking/{{hotel.srno}}"><button type="button" class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now</button></a></p><br>
-					    </div>
-				    </div>
-	            {% endfor %}
-	        </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
+                    <div class="news-box">
+                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px"/>
+                        </figure>
+                        <h3 class="text-dark font-weight-bold">{{hotel.hotelname}}</h3>
+                        <hr style=" border-top: 2px dashed red;">
+                        <span class="text-info"> {{hotel.area}}</span><span>{{hotel.type}}</span>
+                        <p>{{hotel.description[0:100]}}.......
+                            <a href="/hotelbooking/{{hotel.srno}}">
+                                <button type="button" class="btn-lg btn-outline-primary float-right font-weight-bold">
+                                    Book Now
+                                </button></a></p><br>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
             <div class="row">
                 {% for cab in cabs %}
                 {% set fname='uplodedfiles/'+ cab.image_src %}
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
-                        <div class="news-box">
-                            <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" /></figure>
-                            <h3 class="text-dark font-weight-bold">{{cab.cab_name}}</h3><hr style=" border-top: 2px dashed red;">
-                            <span class="text-info"> {{cab.cab_type}}</span><span>{{cab.price}}/-Km</span>
-                            <p>{{cab.cab_description[0:100]}}.......
-                                <a href="/cabbook/{{cab.srno}}"><button type="button" class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now</button></a></p><br>
-					    </div>
-				    </div>
-	            {% endfor %}
-	        </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
+                    <div class="news-box">
+                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px"/>
+                        </figure>
+                        <h3 class="text-dark font-weight-bold">{{cab.cab_name}}</h3>
+                        <hr style=" border-top: 2px dashed red;">
+                        <span class="text-info"> {{cab.cab_type}}</span><span>{{cab.price}}/-Km</span>
+                        <p>{{cab.cab_description[0:100]}}.......
+                            <a href="/cabbook/{{cab.srno}}">
+                                <button type="button" class="btn-lg btn-outline-primary float-right font-weight-bold">
+                                    Book Now
+                                </button>
+                            </a></p>
+                        <br>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
             <div class="row">
                 {% for homestay in homestays %}
                 {% set fname='uplodedfiles/'+ homestay.image_src %}
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
                     <div class="news-box">
-                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" alt="img" /></figure>
-                        <h3 class="text-dark font-weight-bold">{{homestay.homestayname}}</h3><hr style=" border-top: 2px dashed red;">
+                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px"
+                                     alt="img"/></figure>
+                        <h3 class="text-dark font-weight-bold">{{homestay.homestayname}}</h3>
+                        <hr style=" border-top: 2px dashed red;">
                         <span class="text-info"> {{homestay.area}}</span><span class="text-secondary">Rs.{{homestay.price}}/-</span>
                         <p>{{homestay.description[0:100]}}.....
-                        <a href="/homestaybooking/{{homestay.srno}}"><button type="button" class="btn-lg btn-outline-primary font-weight-bold float-right">Book Now</button></a></p><br>
+                            <a href="/homestaybooking/{{homestay.srno}}">
+                                <button type="button" class="btn-lg btn-outline-primary font-weight-bold float-right">
+                                    Book Now
+                                </button>
+                            </a></p>
+                        <br>
                     </div>
                 </div>
                 {% endfor %}
             </div>
-
+        </div>
+        {% endblock %}
+    </div>
 </div>
-
-
-{% endblock %}
-		</div></div>
 

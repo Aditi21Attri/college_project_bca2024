@@ -1,102 +1,120 @@
 {% extends "layout.html" %}
 {% block head %}
-
-       <div class="brand_color">
+<div class="brand_color">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2>Welcome to User dashboard <br>{{user_data.name}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="title">
+    <div class="about" style="background-color: rgba(245,245,245,0.89)">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="titlepage">
-                        <h2>Welcome to User dashboard <br>{{user_data.name}}</h2>
+                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12">
+                    <div class="about_box">
+                        <figure><img src="{{url_for('static',filename='images/user_dashboard.jpg')}}"
+                                     style="width: 600px; height: 300px"/></figure>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12">
+                    <div class="about_box">
+                        <h3>From here you can see and manage your bookings details :</h3>
+                        <form method="post" novalidate>
+                            <p class="searchText"><strong class="text-primary font-weight-bold">Your UserName/Email
+                                :{{user_data.email}}</strong> <br>
+                                <a href="#">
+                                    <button type="submit" id="sendbutton" class="btn btn-primary btn-lg">See All
+                                        Bookings
+                                    </button>
+                                </a><a href="/logout_user">
+                                    <button type="button" id="btn btn-primary btn-lg" name="Log_ot_button"
+                                            class="btn btn-outline-danger btn-lg" value="Log_ot">Log Out
+                                    </button>
+                                </a><br><br></p>
+                        </form>
+                        <table class="table align-middle mb-0 bg-white">
+                            <thead class="bg-secondary text-dark">
+                            <tr class="text-light">
+                                <th>Service Type</th>
+                                <th style="width: 200px">Name</th>
+                                <th style="width: 150px">Check In</th>
+                                <th style="width: 150px">For days</th>
+                                <th>Space</th>
+                                <th>Location</th>
+                                <th>Total</th>
+                                <th style="border: 2px solid rgba(86,85,91,0.73);">Cancle booking</th>
+                            </tr>
+                            </thead>
+                            {% for details in details_wanted %}
+                            <tbody style="background-color: rgba(192,192,192,0.45)">
+                            {% if details.type_of=='hotel' %}
+                            <tr class="text-dark" style="border-bottom: 2px solid rgba(86,85,91,0.73);">
+                                <td>{{details.type_of}}</td>
+                                <td class="font-weight-bold">{{details.service_name}}</td>
+                                <td>{{details.check_in}}</td>
+                                <td>{{details.days}} days</td>
+                                <td>{{details.rooms}} rooms</td>
+                                <th>{{details.from_des}}</th>
+                                <td>Rs.{{details.total}}</td>
+                                <td style="border: 2px solid rgba(86,85,91,0.73);"><a href="/delete/{{details.srno}}">
+                                    <button type="button" class="btn btn-outline-danger  btn-lg">Delete</button>
+                                </a>
+                                </td>
+                            </tr>
+                            {% elif details.type_of=='cabs' %}
+                            <tr class="text-dark" style="border-bottom: 2px solid rgba(86,85,91,0.73);;">
+                                <td>{{details.type_of}}</td>
+                                <td class="font-weight-bold">{{details.service_name}}</td>
+                                <td>{{details.check_in}}</td>
+                                <td>{{details.days}} days</td>
+                                <td>{{details.rooms}} Seats</td>
+                                <th>{{details.from_des}}</th>
+                                <td>After trip end</td>
+                                <td style="border: 2px solid rgba(86,85,91,0.73);"><a href="/delete/{{details.srno}}">
+                                    <button type="button" class="btn btn-outline-danger  btn-lg">Delete</button>
+                                </a></td>
+                            </tr>
+                            {% elif details.type_of=='tourpack' %}
+                            <tr class="text-dark" style="border-bottom: 2px solid rgba(86,85,91,0.73);;">
+                                <td>{{details.type_of}}</td>
+                                <td class="font-weight-bold">{{details.service_name}}</td>
+                                <td>{{details.check_in}}</td>
+                                <td>{{details.days}} days</td>
+                                <td>--</td>
+                                <th>{{details.from_des}}</th>
+                                <td>Rs.{{details.total}}</td>
+                                <td style="border: 2px solid rgba(86,85,91,0.73);"><a href="/delete/{{details.srno}}">
+                                    <button type="button" class="btn btn-outline-danger  btn-lg">Delete</button>
+                                </a></td>
+                            </tr>
+                            {% else %}
+                            <tr class="text-dark" style="border-bottom: 2px solid rgba(86,85,91,0.73);">
+                                <td>{{details.type_of}}</td>
+                                <td class="font-weight-bold">{{details.service_name}}</td>
+                                <td>{{details.check_in}}</td>
+                                <td>{{details.days}} days</td>
+                                <td>--</td>
+                                <th>{{details.from_des}}</th>
+                                <td>Rs.{{details.total}}</td>
+                                <td style="border: 2px solid rgba(86,85,91,0.73);"><a
+                                        href="/delete_booking/{{details.srno}}">
+                                    <button type="button" class="btn btn-outline-danger  btn-lg">Delete</button>
+                                </a></td>
+                            </tr>
+                            {% endif %}
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                        <br><br>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<div class="title">
-<div class="about" style="background-color: rgba(245,245,245,0.89)">
-   <div class="container">
-      <div class="row">
-         <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12">
-            <div class="about_box">
-               <figure><img src="{{url_for('static',filename='images/user_dashboard.jpg')}}" style="width: 600px; height: 300px" /></figure>
-            </div>
-         </div>
-          <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12">
-            <div class="about_box">
-               <h3>From here you can see and manage your bookings details :</h3>
-                <form method="post" novalidate>
-                <p class="searchText"><strong class="text-primary font-weight-bold">Your UserName/Email  :{{user_data.email}}</strong> <br>
-                    <a href="#"> <button type="submit" id="sendbutton" class="btn btn-primary btn-lg">See All Bookings  </button></a><a  href="/logout_user"><button type="button" id="btn btn-primary btn-lg" name="Log_ot_button" class="btn btn-outline-danger btn-lg" value="Log_ot">Log Out</button></a><br><br></p>
-
-                </form>
-                <table class="table align-middle mb-0 bg-white" >
-                    <thead class="bg-secondary text-dark">
-                        <tr class="text-light" >
-                          <th >Service Type</th>
-                            <th style="width: 200px" >Name</th>
-                          <th style="width: 150px">Check In</th>
-                          <th style="width: 150px">For days </th>
-                            <th>Space</th>
-                            <th>Location</th>
-                            <th>Total</th>
-                            <th style="border: 2px solid rgba(86,85,91,0.73);">Cancle booking</th>
-                        </tr>
-                      </thead>
-                {% for details in details_wanted %}
-                     <tbody style="background-color: rgba(192,192,192,0.45)">
-                {% if details.type_of=='hotel' %}
-                        <tr class="text-dark" style="border-bottom: 2px solid rgba(86,85,91,0.73);">
-                            <td>{{details.type_of}}</td>
-                            <td class="font-weight-bold">{{details.service_name}}</td>
-                            <td>{{details.check_in}}</td>
-                            <td>{{details.days}} days</td>
-                            <td>{{details.rooms}} rooms</td>
-                            <th>{{details.from_des}}</th>
-                            <td>Rs.{{details.total}}</td>
-                            <td style="border: 2px solid rgba(86,85,91,0.73);"><a href="/delete/{{details.srno}}"><button type="button"  class="btn btn-outline-danger  btn-lg">Delete</button></a>
-                            </td>
-                        </tr>
-                    {% elif details.type_of=='cabs' %}
-                        <tr class="text-dark" style="border-bottom: 2px solid rgba(86,85,91,0.73);;">
-                            <td>{{details.type_of}}</td>
-                            <td class="font-weight-bold">{{details.service_name}}</td>
-                            <td>{{details.check_in}}</td>
-                            <td>{{details.days}} days</td>
-                            <td>{{details.rooms}} Seats</td>
-                            <th>{{details.from_des}}</th>
-                            <td>After trip end</td>
-                            <td style="border: 2px solid rgba(86,85,91,0.73);"><a href="/delete/{{details.srno}}"><button type="button"  class="btn btn-outline-danger  btn-lg">Delete</button></a></td>
-                        </tr>
-                {% elif details.type_of=='tourpack' %}
-                        <tr class="text-dark" style="border-bottom: 2px solid rgba(86,85,91,0.73);;">
-                            <td>{{details.type_of}}</td>
-                            <td class="font-weight-bold">{{details.service_name}}</td>
-                            <td>{{details.check_in}}</td>
-                            <td>{{details.days}} days</td>
-                            <td>--</td>
-                            <th>{{details.from_des}}</th>
-                            <td>Rs.{{details.total}}</td>
-                            <td style="border: 2px solid rgba(86,85,91,0.73);"><a href="/delete/{{details.srno}}"><button type="button"  class="btn btn-outline-danger  btn-lg">Delete</button></a></td>
-                        </tr>
-                {% else %}
-                        <tr class="text-dark" style="border-bottom: 2px solid rgba(86,85,91,0.73);">
-                            <td>{{details.type_of}}</td>
-                          <td class="font-weight-bold">{{details.service_name}}</td>
-                          <td>{{details.check_in}}</td>
-                          <td>{{details.days}} days</td>
-                             <td>--</td>
-                            <th>{{details.from_des}}</th>
-                            <td>Rs.{{details.total}}</td>
-                            <td style="border: 2px solid rgba(86,85,91,0.73);"><a href="/delete_booking/{{details.srno}}"><button type="button"  class="btn btn-outline-danger  btn-lg">Delete</button></a></td>
-                        </tr>
-                 {% endif %}
-                    </tbody>
-                {% endfor %}
-              </table><br><br>
-            </div>
-          </div>
-      </div>
-   </div>
-</div>
 </div>
 {% endblock %}

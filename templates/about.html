@@ -1,84 +1,96 @@
 {% extends "layout.html" %}
 {% block head %}
-
-       <div class="brand_color">
-        <div class="container">
+<div class="brand_color">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2>About Us</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="about_box">
+                    <figure><img src="{{url_for('static',filename='images/travel_india.jpg')}}"/></figure>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="about_box">
+                    <h3>What is Travelsoo ?</h3>
+                    <p>Travelsoo is an Indian online travel company . The company directly communicates with the
+                        customers
+                        through its verified online platform and deals with all customers’ concerns related to
+                        travelling.
+                        In other words, Travelso is the perfect guide for you to plan your vacation. Travelsoo provides
+                        places to stay, villas and homestays, inter-city cab service, holiday packages, and hotel
+                        booking
+                        services on its portal.<br><br>One of the reasons travelers choose Travelsoo is its
+                        comprehensive range of
+                        travel services. Expect to be able to plan an entire trip on here, from booking flights, hotels,
+                        and
+                        vacation packages.<br> <br>Travelso describes itself as a
+                        “your-personal-travel-partner” both for locals and foreigners touring in India. It's easy to use
+                        and offers
+                        competitive prices, making it an attractive option for budget-conscious travelers. <br>At
+                        present,
+                        most of the travel products and services available on the site are for travelers in India. You
+                        can
+                        use the official website of Travelsoo to place and manage your reservations. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<!-- CHOOSE  -->
+<div class="whyschose">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 offset-md-3">
+                <div class="title">
+                    <h2>Why <strong class="black">choose us</strong></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="choose_bg">
+    <div class="container">
+        <div class="white_bg">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="titlepage">
-                        <h2>About Us</h2>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="for_box">
+                        <i><img src="{{url_for('static',filename='images/twentyfour.jpg')}}"
+                                style="width:300px; height:200px"/></i>
+                        <h3>Support 24*7</h3>
+                        <p>This company understands the importance of customers, and thus facilitates 24*7 dedicated
+                            customer support.
+                            Excellent discounts for various card holders, deals of the day for domestic travel, and
+                            first transaction discounts for users are available on website.</p>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="for_box">
+                        <i><img src="{{url_for('static',filename='images/user_dashboard.jpg')}}"
+                                style="width: 300px; height: 200px"/></i>
+                        <h3>Travel India.</h3>
+                        <p>Understanding the true meaning of travelling, this organization has changed the face of
+                            travel
+                            booking in India. Great deals are right around the corner with MakeMyTrip.Provides hotel
+                            rooms,
+                            holiday packages,cabs and homestay packages for almost all the places in the entire
+                            world.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<div class="about">
-   <div class="container">
-      <div class="row">
-         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-            <div class="about_box">
-               <figure><img src="{{url_for('static',filename='images/travel_india.jpg')}}"/></figure>
-            </div>
-         </div>
-          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-            <div class="about_box">
-               <h3>What is Travelsoo ?</h3>
-               <p>Travelsoo is an Indian online travel company . The company directly communicates with the customers
-                   through its verified online platform and deals with all customers’ concerns related to travelling.
-                   In other words, Travelso is the perfect guide for you to plan your vacation. Travelsoo provides
-                   places to stay, villas and homestays, inter-city cab service, holiday packages, and hotel booking
-                   services on its portal.<br><br>One of the reasons travelers choose Travelsoo is its comprehensive range of
-                   travel services. Expect to be able to plan an entire trip on here, from booking flights, hotels, and
-                   vacation packages.<br> <br>Travelso describes itself as a
-                   “your-personal-travel-partner” both for locals and foreigners touring in India. It's easy to use and offers
-                   competitive prices, making it an attractive option for budget-conscious travelers. <br>At present,
-                   most of the travel products and services available on the site are for travelers in India. You can
-                   use the official website of Travelsoo to place and manage your reservations.
-
-The mobile app is available i</p>
-            </div>
-         </div>
-      </div>
-   </div>
 </div>
-<hr>
-<!-- CHOOSE  -->
-      <div class="whyschose">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-7 offset-md-3">
-                  <div class="title">
-                     <h2>Why <strong class="black">choose us</strong></h2>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="choose_bg">
-         <div class="container">
-            <div class="white_bg">
-            <div class="row">
-               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                  <div class="for_box">
-                     <i><img src="{{url_for('static',filename='images/twentyfour.jpg')}}" style="width:300px; height:200px"/></i>
-                     <h3>Support 24*7</h3>
-                     <p>This company understands the importance of customers, and thus facilitates 24*7 dedicated customer support.
-                     Excellent discounts for various card holders, deals of the day for domestic travel, and first transaction discounts for users are available on website.</p>
-                  </div>
-               </div>
-               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                  <div class="for_box">
-                     <i><img src="{{url_for('static',filename='images/user_dashboard.jpg')}}" style="width: 300px; height: 200px"/></i>
-                     <h3>Travel India.</h3>
-                     <p>Understanding the true meaning of travelling, this organization has changed the face of travel
-                        booking in India. Great deals are right around the corner with MakeMyTrip.Provides hotel rooms,
-                        holiday packages,cabs and homestay packages for almost all the places in the entire world.</p>
-                  </div>
-               </div>
-                </div>
-       </div>
-      </div>
-      </div>
 
 <hr><br>
 <div class="title">
@@ -91,58 +103,71 @@ The mobile app is available i</p>
             </div>
 
 
-    <div id="client_slider" class="carousel slide banner_Client" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#client_slider" data-slide-to="0" class="active"></li>
-            <li data-target="#client_slider" data-slide-to="1"></li>
-            <li data-target="#client_slider" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active"  >
-                <div class="container">
-                    <div class="carousel-caption text-bg">
-                        <div class="img_bg">
-                            <i><img src="{{url_for('static',filename='images/aditi.jpg')}}" style="height: 180px"/><span>ADITI ATTRI<br><strong class="date">Senior Developer</strong></span></i>
+            <div id="client_slider" class="carousel slide banner_Client" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#client_slider" data-slide-to="0" class="active"></li>
+                    <li data-target="#client_slider" data-slide-to="1"></li>
+                    <li data-target="#client_slider" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="carousel-caption text-bg">
+                                <div class="img_bg">
+                                    <i><img src="{{url_for('static',filename='images/aditi.jpg')}}"
+                                            style="height: 180px"/><span>ADITI ATTRI<br><strong class="date">Senior Developer</strong></span></i>
+                                </div>
+                                <p>Embark on a journey like never before with Travelsoo, a state-of-the-art web
+                                    application meticulously crafted for travel enthusiasts seeking unparalleled
+                                    adventures. As a
+                                    senior developer, I am thrilled to present a platform that seamlessly blends
+                                    innovation,
+                                    functionality, and user-centric design to transform the way you experience
+                                    travel.</p>
+                            </div>
                         </div>
-                        <p>Embark on a journey like never before with Travelsoo, a state-of-the-art web
-                      application meticulously crafted for travel enthusiasts seeking unparalleled adventures. As a
-                      senior developer, I am thrilled to present a platform that seamlessly blends innovation,
-                      functionality, and user-centric design to transform the way you experience travel.</p>
                     </div>
-                 </div>
-            </div>
 
-             <div class="carousel-item">
-                <div class="container">
-                    <div class="carousel-caption text-bg">
-                        <div class="img_bg">
-                            <i><img src="{{url_for('static',filename='images/sood.jpg')}}" style="height: 180px"/><span>Kritika Sood<br><strong class="date">Web Designer</strong></span></i>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="carousel-caption text-bg">
+                                <div class="img_bg">
+                                    <i><img src="{{url_for('static',filename='images/sood.jpg')}}"
+                                            style="height: 180px"/><span>Kritika Sood<br><strong class="date">Web Designer</strong></span></i>
+                                </div>
+                                <p>At Travelsoo , we believe that the journey begins the moment you engage with our
+                                    platform. Every pixel, color, and interaction has been thoughtfully crafted to
+                                    create an
+                                    immersive and delightful experience. Our design philosophy revolves around
+                                    simplicity, elegance,
+                                    and user empowerment, ensuring that your exploration is not only effortless but also
+                                    visually
+                                    captivating.</p>
+                            </div>
                         </div>
-                        <p>At Travelsoo , we believe that the journey begins the moment you engage with our
-                        platform. Every pixel, color, and interaction has been thoughtfully crafted to create an
-                        immersive and delightful experience. Our design philosophy revolves around simplicity, elegance,
-                        and user empowerment, ensuring that your exploration is not only effortless but also visually
-                        captivating.</p>
                     </div>
-                </div>
-             </div>
-            <div class="carousel-item" >
-                <div class="container">
-                    <div class="carousel-caption text-bg">
-                        <div class="img_bg">
-                        <i><img src="{{url_for('static',filename='images/mehra.jpg')}}" style="height: 180px"/><span>Kritika Mehra<br><strong class="date">Web Designer</strong></span></i>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="carousel-caption text-bg">
+                                <div class="img_bg">
+                                    <i><img src="{{url_for('static',filename='images/mehra.jpg')}}"
+                                            style="height: 180px"/><span>Kritika Mehra<br><strong class="date">Web Designer</strong></span></i>
+                                </div>
+                                <p>At Travelsoo, we believe that the journey begins the moment you engage with our
+                                    platform. Every pixel, color, and interaction has been thoughtfully crafted to
+                                    create an
+                                    immersive and delightful experience. Our design philosophy revolves around
+                                    simplicity, elegance,
+                                    and user empowerment, ensuring that your exploration is not only effortless but also
+                                    visually
+                                    captivating.</p>
+                            </div>
                         </div>
-                    <p>At Travelsoo, we believe that the journey begins the moment you engage with our
-                        platform. Every pixel, color, and interaction has been thoughtfully crafted to create an
-                        immersive and delightful experience. Our design philosophy revolves around simplicity, elegance,
-                        and user empowerment, ensuring that your exploration is not only effortless but also visually
-                        captivating.</p>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+    {% endblock %}
+    <!-- end service -->
 </div>
-{% endblock %}
-      <!-- end service -->

@@ -1,49 +1,56 @@
 {% extends "layout.html" %}
 {% block head %}
 <head>
-	<link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/tour.css')}}">
 </head>
 <form method="post" novalidate>
-<div class="card shadow mb-5 bg-white rounded">
-	<div class="card-body">
-    <hr>
-		<p class="searchText"><strong>Apply filters:</strong></p>
-		<div class="row">
-			<div class="col-lg-8 col-sm-6">
-						<select class="browser-default custom-select mb-4" id="select1" name="destination">
-							<option value="none" selected="">Destination</option>
-							<option value="Delhi">Delhi</option>
-							<option value="Mumbai">Mumbai</option>
-							<option value="Kasol">Kasol</option>
-							<option value="Manali">Manali</option>
-
-						</select>
-					</div>
-					<div class=" col-lg-4 col-sm-6" style="margin-bottom: 30px; margin-inside: 10px ">
-						<button type="submit" id="sendbutton" class="btn btn-primary btn-lg float-right mt-5">Search</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="card shadow mb-5 bg-white rounded">
+        <div class="card-body"><hr>
+            <p class="searchText"><strong>Apply filters:</strong></p>
+            <div class="row">
+                <div class="col-lg-8 col-sm-6">
+                    <select class="browser-default custom-select mb-4" id="select1" name="destination">
+                        <option value="none" selected="">Destination</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Kasol">Kasol</option>
+                        <option value="Manali">Manali</option>
+                    </select>
+                </div>
+                <div class=" col-lg-4 col-sm-6" style="margin-bottom: 30px; margin-inside: 10px ">
+                    <button type="submit" id="sendbutton" class="btn btn-primary btn-lg float-right mt-5">Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </form>
 <div class="title">
-<div class="Lastestnews blog">
-	<div class="container">
-		<div class="row">
-     		{% for tour in tours %}
-			{% set fname='uplodedfiles/'+ tour.image_src %}
-			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
-				<div class="news-box">
-					<figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px" alt="img" /></figure>
-					<h3 class="text-dark font-weight-bold">{{tour.tourname[0:20]}}</h3><hr style=" border-top: 2px dashed red;">
-					<span class="text-info"> {{tour.area}}</span><span class="text-secondary">Rs.{{tour.price}}/-p</span>
-					<p>{{tour.description[0:90]}}....<a href="/tourpackbook/{{tour.srno}}"><button type="button"  name="bookbutton" class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now</button></a></p><br>
-				</div>
-			</div>
-	 {% endfor %}
-		</div>
-	</div>
-</div>
+    <div class="Lastestnews blog">
+        <div class="container">
+            <div class="row">
+                {% for tour in tours %}
+                {% set fname='uplodedfiles/'+ tour.image_src %}
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margin">
+                    <div class="news-box">
+                        <figure><img src="{{url_for('static',filename=fname)}}" style="width: 350px; height: 200px"
+                                     alt="img"/></figure>
+                        <h3 class="text-dark font-weight-bold">{{tour.tourname[0:20]}}</h3>
+                        <hr style=" border-top: 2px dashed red;">
+                        <span class="text-info"> {{tour.area}}</span><span
+                            class="text-secondary">Rs.{{tour.price}}/-p</span>
+                        <p>{{tour.description[0:90]}}....<a href="/tourpackbook/{{tour.srno}}">
+                            <button type="button" name="bookbutton"
+                                    class="btn-lg btn-outline-primary float-right font-weight-bold">Book Now
+                            </button>
+                        </a></p>
+                        <br>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

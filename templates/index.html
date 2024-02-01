@@ -1,78 +1,88 @@
 {% extends "layout.html" %}
 {% block head %}
-      <section class="slider_section">
-         <div  class="carousel slide banner-main" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <img class="first-slide" src="{{url_for('static',filename='images/banner3.png')}}" alt="First slide">
-                  <div class="container">
-                     <div class="carousel-caption relative">
+<section class="slider_section">
+    <div class="carousel slide banner-main" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="first-slide" src="{{url_for('static',filename='images/banner3.png')}}" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption relative">
                         <h1>Your go<br> <strong class="black_bold">to travel partner </strong><br>
-                           <strong class="yellow_bold">Travelsoo</strong></h1>
-                        <p>Planning your next trip and confused what to do, where to go and<br> how to manage your budget?<br>We got you!<br>
-                      Explore our website and plan what is best for you.</p>
-                        <a  href="#">Explore Us</a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
-      <div class="service">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-8 offset-md-2">
-                  <div class="title">
-                     <h2>Services <strong class="black">We provides</strong></h2>
-                     <span>Book your tickets now and choose your perfect destination</span>
-                  </div>
-               </div>
-            </div>
-             <div class="product-bg">
-                 <div class="product-bg-white">
-                     <div class="container">
-                        <div class="row">
-                           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                              <a href="hotel"><div class="product-box">
-                                 <i><img src="{{url_for('static',filename='uplodedfiles/mainhotel.jpg')}}"/></i>
-                                 <h3>Hotel</h3>
-                                     <i class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-4x"></i><i class="fa fa-building fa-2x"></i>
-                              </div></a>
-                           </div>
-                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                              <a href="homestay"><div class="product-box">
-                                 <i><img src="{{url_for('static',filename='uplodedfiles/homestaymain.jpg')}}"/></i>
-                                 <h3>HomeStays & Villas</h3>
-                                  <h4><i class="fa fa-home fa-3x"></i><i class="fa fa-home fa-2x"></i></h4>
-
-                                  </div></a>
-                            </div>
-
-                           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                              <a href="cabs"> <div class="product-box">
-                                 <i><img src="{{url_for('static',filename='uplodedfiles/cab.jpg')}}"/></i>
-                                 <h3>Cab</h3>
-                                 <i class="fa fa-car fa-4x"></i>
-                              </div></a>
-                           </div>
-                           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                              <a href="tour"><div class="product-box">
-                                 <i><img src="{{url_for('static',filename='uplodedfiles/tourindia.jpg')}}"/></i>
-                                 <h3>Tour packages</h3>
-                                 <i class="fa fa-road fa-4x"></i>
-                              </div></a>
-                               </div>
-                            </div>
-                        </div>
-                     </div>
+                            <strong class="yellow_bold">Travelsoo</strong></h1>
+                        <p>Planning your next trip and confused what to do, where to go and<br> how to manage your
+                            budget?<br>We got you!<br>
+                            Explore our website and plan what is best for you.</p>
+                        <a href="#">Explore Us</a>
+                    </div>
                 </div>
             </div>
-         </div>
-
-               
-               </div>
+        </div>
+    </div>
+</section>
+<div class="service">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="title">
+                    <h2>Services <strong class="black">We provides</strong></h2>
+                    <span>Book your tickets now and choose your perfect destination</span>
+                </div>
             </div>
-         </div>
+        </div>
+        <div class="product-bg">
+            <div class="product-bg-white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                            <a href="hotel">
+                                <div class="product-box">
+                                    <i><img src="{{url_for('static',filename='uplodedfiles/mainhotel.jpg')}}"/></i>
+                                    <h3>Hotel</h3>
+                                    <i class="fa fa-building fa-2x"></i><i class="fa fa-building-o fa-4x"></i><i
+                                        class="fa fa-building fa-2x"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                            <a href="homestay">
+                                <div class="product-box">
+                                    <i><img src="{{url_for('static',filename='uplodedfiles/homestaymain.jpg')}}"/></i>
+                                    <h3>HomeStays & Villas</h3>
+                                    <h4><i class="fa fa-home fa-3x"></i><i class="fa fa-home fa-2x"></i></h4>
+
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                            <a href="cabs">
+                                <div class="product-box">
+                                    <i><img src="{{url_for('static',filename='uplodedfiles/cab.jpg')}}"/></i>
+                                    <h3>Cab</h3>
+                                    <i class="fa fa-car fa-4x"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                            <a href="tour">
+                                <div class="product-box">
+                                    <i><img src="{{url_for('static',filename='uplodedfiles/tourindia.jpg')}}"/></i>
+                                    <h3>Tour packages</h3>
+                                    <i class="fa fa-road fa-4x"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+</div>
+</div>
 <br>
 <div class="title" style="background-color: rgba(192,192,192,0.3)"><br>
     <div class="Clients_bg_white">
@@ -84,59 +94,69 @@
             </div>
 
 
-    <div id="client_slider" class="carousel slide banner_Client" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#client_slider" data-slide-to="0" class="active"></li>
-            <li data-target="#client_slider" data-slide-to="1"></li>
-            <li data-target="#client_slider" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active"  >
-                <div class="container">
-                    <div class="carousel-caption text-bg">
-                        <div class="img_bg">
-                            <i><img src="{{url_for('static',filename='images/aditi.jpg')}}" style="height: 180px"/><span>ADITI ATTRI<br><strong class="date">Senior Developer</strong></span></i>
+            <div id="client_slider" class="carousel slide banner_Client" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#client_slider" data-slide-to="0" class="active"></li>
+                    <li data-target="#client_slider" data-slide-to="1"></li>
+                    <li data-target="#client_slider" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="carousel-caption text-bg">
+                                <div class="img_bg">
+                                    <i><img src="{{url_for('static',filename='images/aditi.jpg')}}"
+                                            style="height: 180px"/><span>ADITI ATTRI<br><strong class="date">Senior Developer</strong></span></i>
+                                </div>
+                                <p>Embark on a journey like never before with Travelsoo, a state-of-the-art web
+                                    application meticulously crafted for travel enthusiasts seeking unparalleled
+                                    adventures. As a
+                                    senior developer, I am thrilled to present a platform that seamlessly blends
+                                    innovation,
+                                    functionality, and user-centric design to transform the way you experience
+                                    travel.</p>
+                            </div>
                         </div>
-                        <p>Embark on a journey like never before with Travelsoo, a state-of-the-art web
-                      application meticulously crafted for travel enthusiasts seeking unparalleled adventures. As a
-                      senior developer, I am thrilled to present a platform that seamlessly blends innovation,
-                      functionality, and user-centric design to transform the way you experience travel.</p>
                     </div>
-                 </div>
-            </div>
-
-             <div class="carousel-item">
-                <div class="container">
-                    <div class="carousel-caption text-bg">
-                        <div class="img_bg">
-                            <i><img src="{{url_for('static',filename='images/sood.jpg')}}" style="height: 180px"/><span>Kritika Sood<br><strong class="date">Web Designer</strong></span></i>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="carousel-caption text-bg">
+                                <div class="img_bg">
+                                    <i><img src="{{url_for('static',filename='images/sood.jpg')}}"
+                                            style="height: 180px"/><span>Kritika Sood<br><strong class="date">Web Designer</strong></span></i>
+                                </div>
+                                <p>At Travelsoo , we believe that the journey begins the moment you engage with our
+                                    platform. Every pixel, color, and interaction has been thoughtfully crafted to
+                                    create an
+                                    immersive and delightful experience. Our design philosophy revolves around
+                                    simplicity, elegance,
+                                    and user empowerment, ensuring that your exploration is not only effortless but also
+                                    visually
+                                    captivating.</p>
+                            </div>
                         </div>
-                        <p>At Travelsoo , we believe that the journey begins the moment you engage with our
-                        platform. Every pixel, color, and interaction has been thoughtfully crafted to create an
-                        immersive and delightful experience. Our design philosophy revolves around simplicity, elegance,
-                        and user empowerment, ensuring that your exploration is not only effortless but also visually
-                        captivating.</p>
                     </div>
-                </div>
-             </div>
-            <div class="carousel-item" >
-                <div class="container">
-                    <div class="carousel-caption text-bg">
-                        <div class="img_bg">
-                        <i><img src="{{url_for('static',filename='images/mehra.jpg')}}" style="height: 180px"/><span>Kritika Mehra<br><strong class="date">Web Designer</strong></span></i>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="carousel-caption text-bg">
+                                <div class="img_bg">
+                                    <i><img src="{{url_for('static',filename='images/mehra.jpg')}}"
+                                            style="height: 180px"/><span>Kritika Mehra<br><strong class="date">Web Designer</strong></span></i>
+                                </div>
+                                <p>At Travelsoo, we believe that the journey begins the moment you engage with our
+                                    platform. Every pixel, color, and interaction has been thoughtfully crafted to
+                                    create an
+                                    immersive and delightful experience. Our design philosophy revolves around
+                                    simplicity, elegance,
+                                    and user empowerment, ensuring that your exploration is not only effortless but also
+                                    visually
+                                    captivating.</p>
+                            </div>
                         </div>
-                    <p>At Travelsoo, we believe that the journey begins the moment you engage with our
-                        platform. Every pixel, color, and interaction has been thoughtfully crafted to create an
-                        immersive and delightful experience. Our design philosophy revolves around simplicity, elegance,
-                        and user empowerment, ensuring that your exploration is not only effortless but also visually
-                        captivating.</p>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 </div>
-</div>
-      <!-- end map --> 
 {% endblock %}
