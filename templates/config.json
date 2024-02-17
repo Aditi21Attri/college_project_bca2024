@@ -2,12 +2,9 @@
   "parameters": {
     "local_server": "True",
     "local_url": "mysql+mysqlconnector://root :@localhost/tourandtravel",
-    "gmail_user": "attriaditi2@gmail.com",
-    "gmail_password": "2*attri0708",
     "admin_user": "aditicreations21@gmail.com",
     "admin_password": "YessweCan",
     "admin_name": "ADITI ATTRI",
-    "file_save_url": "C:\\Users\\DELL\\OneDrive\\Desktop\\College Project\\static\\uplodedfiles",
     "no_of_services": 3,
     "invalid_message": "Invalid Login Id"
   }
