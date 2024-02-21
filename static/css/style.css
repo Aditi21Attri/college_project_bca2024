@@ -1547,8 +1547,8 @@ input[type="radio"] .styled:checked+label::after {
 
 
 .buy {
-background: rgba(58, 58, 141, 0.93);
-padding: 7px 41px !important;color: yellow;
+background: #380a9ae4;
+padding: 7px 41px !important;color: rgb(234, 234, 156);
 margin-top: 18px;
 border-radius: 5px;
 display: inline-block;
