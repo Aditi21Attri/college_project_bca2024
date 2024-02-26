@@ -173,12 +173,15 @@ def register():
         name = request.form.get('name')
         email = request.form.get('email')
         password = request.form.get('password')
-        user_check = signindetails.query.filter_by(email=email)
-        for user in user_check:
-            if user.email == email:
-                return render_template("register.html", message="Email Already exist", invalid=True)
-            else:
-                is_false = True
+        user_check = signindetails.query.filter_by(email=email).first()
+        print(user_check)
+        if user_check != None:
+            is_false=False
+            return render_template("register.html", message="Email Already exist", invalid=True)
+
+        else:
+            is_false = True
+
         if is_false:
             entry = signindetails(name=name, password=password, email=email, date=datetime.now(), type_of="users")
             db.session.add(entry)
@@ -337,11 +340,20 @@ def login():
             return render_template("adminlogin.html", params=params, invalid="False")
         elif user_details != "" and user_pass != "":
             users = signindetails.query.filter()
+            is_true=False
             for user in users:
-                if user_details == user.email and user_pass == user.password:
-                    session["users"] = user_details
-                    logged_user = signindetails.query.filter_by(email=user_details).first()
-                    return render_template("userdashboard.html", invalid="False", params=params, user_data=logged_user)
+                if user_details == user.email:
+                    if user_pass == user.password:
+                        session["users"] = user_details
+                        is_true=False
+                        logged_user = signindetails.query.filter_by(email=user_details).first()
+                        return render_template("userdashboard.html", invalid="False", params=params, user_data=logged_user)
+                    else:
+                        return render_template("login.html",message="Invalid password",invalid="True")
+                else:
+                    is_true=True
+            if is_true:
+                return render_template("login.html",message="User not found",invalid="True")
 
         else:
             return render_template("login.html", params=params, invalid="True")
