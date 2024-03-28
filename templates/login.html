@@ -11,7 +11,17 @@
                 <form style="background-color: rgba(192,192,192,0.89);padding: 30px ;border: 3px; border-color: #0d0c0a"
                       action="" method="post" novalidate>
                     <br>
-                    <h1 class="font-weight-bold" s>Login </h1>
+                    {% with msg = get_flashed_messages(with_categories=True) %}
+                    {% if msg %}
+                    {% for category, message in msg %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <strong>{{ message }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <h1 class="font-weight-bold" >Login </h1>
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                         <label class="form-label" for="form3Example3">Email address:</label>

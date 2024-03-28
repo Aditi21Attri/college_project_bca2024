@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect,flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json
@@ -94,7 +94,10 @@ def hotelbooking(srno):
                                     days=days, total=total, type_of="hotel", from_des=from_des)
             db.session.add(booking)
             db.session.commit()
+            flash("Your Hotel is Successfully booked...")
+
         else:
+            flash("You need to LogIn first..","danger")
             return redirect("/login")
     hotel = hotelsdetails.query.filter_by(srno=srno).first()
     return render_template("hotelbooking.html", hotel=hotel)
@@ -115,7 +118,9 @@ def homestaybooking(srno):
                                     rooms=homestay.roomsoffered)
             db.session.add(booking)
             db.session.commit()
+            flash("Your Homestay is Successfully booked...")
         else:
+            flash("You need to LogIn first..", "danger")
             return redirect("/login")
     homestay = homestayvillas.query.filter_by(srno=srno).first()
     return render_template("homestaybooking.html", homestay=homestay)
@@ -138,7 +143,9 @@ def cabbook(srno):
                                     days=days, type_of="cabs", rooms=cabs.seats_available)
             db.session.add(booking)
             db.session.commit()
+            flash("Your Cab is Successfully booked...")
         else:
+            flash("You need to LogIn first..", "danger")
             return redirect("/login")
     cabs = tourcabs.query.filter_by(srno=srno).first()
     return render_template("cabbook.html", cab=cabs)
@@ -160,7 +167,9 @@ def tourpackbook(srno):
                                     people=people, type_of="tourpack", total=total, days=days, from_des=from_des)
             db.session.add(booking)
             db.session.commit()
+            flash("Your tourpack is Successfully booked...")
         else:
+            flash("You need to LogIn first..", "danger")
             return redirect("/login")
     tours = tourpackages.query.filter_by(srno=srno).first()
     return render_template("tourpackbook.html", tour=tours)

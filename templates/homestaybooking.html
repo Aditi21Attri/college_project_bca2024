@@ -33,7 +33,14 @@
                     <div class="card-body">
                         <p class="card-title text-center shadow mb-5 rounded">HOMESTAY BOOKING FORM</p>
                         <hr>
-                        <p class="searchText"><strong>Book your hotel </strong></p><br>
+                        <p class="searchText"><strong>Book your homestay </strong></p><br>
+                         {% with messages = get_flashed_messages()%}
+                        {% if messages%}
+                         {% for message in messages%}
+                        <div class="p-3 mb-2 bg-success font-weight-bold text-white"><p>{{message}}</p></div>
+                        {%endfor%}
+                        {%endif%}
+                        {%endwith%}
 
                         <div class="row">
                             <div class="col-sm-12">

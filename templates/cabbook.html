@@ -33,6 +33,13 @@
                         <p class="card-title text-center shadow mb-5 rounded">CAB BOOKING FORM</p>
                         <hr>
                         <p class="searchText"><strong>Book your cab </strong></p>
+                         {% with messages = get_flashed_messages()%}
+                        {% if messages%}
+                         {% for message in messages%}
+                        <div class="p-3 mb-2 bg-success font-weight-bold text-white"><p>{{message}}</p></div>
+                        {%endfor%}
+                        {%endif%}
+                        {%endwith%}
                         <div class="row">
                             <div class="col-12">
                                 <select class="browser-default custom-select mb-4" name="days" required>
